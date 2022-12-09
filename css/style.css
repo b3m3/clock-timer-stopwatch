@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -9,4 +11,63 @@
   color: inherit;
 }
 
+:root {
+  --gray-400: #161A25;
+  --gray-300: #161a258f;
+}
 
+html {
+  height: 100%;
+  font-size: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: .875rem;
+  font-weight: 600;
+  height: 100%;
+  background: linear-gradient(180deg, #F6F7F9 0%, #E9ECF5 100%);
+}
+
+.app {
+  padding: 1.25rem;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__wrapp {
+  background: #F2F4F8;
+  box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.5), 10px 15px 30px rgba(22, 25, 36, 0.1);
+  border-radius: 2rem;
+  padding: .75rem;
+}
+
+
+.header__wrapp ul {
+  display: flex;
+  align-items: center;
+  gap: 1.5625rem;
+}
+
+.header__wrapp li {
+  cursor: pointer;
+  background: #EFF2F7;
+  border-radius: 2rem;
+  padding: .625rem 1.4375rem;
+  transition: .4s ease-out;
+  color: var(--gray-300);
+}
+
+.header__wrapp li:hover {
+  box-shadow: inset -4px -2px 4px #FFFFFF, inset 4px 4px 4px rgba(22, 25, 36, 0.005);
+}
+
+.header__wrapp li.active {
+  box-shadow: inset -4px -2px 4px #FFFFFF, inset 4px 4px 4px rgba(22, 25, 36, 0.1);
+  color: var(--gray-400);
+}
