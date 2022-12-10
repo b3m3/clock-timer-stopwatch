@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/index.js" defer="defer"></script>
+  <script src="js/index.js" defer="defer" type="module"></script>
   <title>Clock</title>
 </head>
 
@@ -26,9 +26,26 @@
     </header>
 
     <main>
-      <section class="clock"></section>
-      <section class="timer"></section>
-      <section class="stopwatch"></section>
+      <!--clock-->
+      <section class="content clock active">
+        <div class="clock__wrapp">
+          <div class="clock__body">
+            <div class="clock__circle">
+              <i class="arrow-hours"></i>
+              <i class="arrow-minutes"></i>
+              <i class="arrow-seconds"></i>
+            </div>
+            <div class="clock__dots">
+              <span>12</span>
+              <span>6</span>
+              <span>9</span>
+              <span>3</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content timer">timer</section>
+      <section class="content stopwatch">stopwatch</section>
     </main>
 
   </div>
