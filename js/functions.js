@@ -30,17 +30,25 @@ export const tabs = (buttons, contents, index, activeClass) => {
 export const timerCounter = (id, hou, min, sec) => {
   sec.textContent--;
 
+  if (+sec.textContent >= 0) {
+    sec.textContent = +sec.textContent < 10 ? `0${sec.textContent}` : sec.textContent;
+  }
+  
   if (+hou.textContent > 0 && +min.textContent === 0 && +sec.textContent < 0) {
-    hou.textContent = +hou.textContent - 1;
+    hou.textContent = +hou.textContent < 10 ? `0${hou.textContent -1}` : hou.textContent -1;
     min.textContent = 60;
   }
   
   if (+min.textContent > 0 && +sec.textContent < 0) {
-    min.textContent = +min.textContent -1;
-    sec.textContent = 59;
+    min.textContent = +min.textContent < 10 ? `0${min.textContent -1}` : min.textContent -1;
+    sec.textContent = 11;
   }
 
-  if (+hou.textContent === 0 && +min.textContent === 0 && +sec.textContent <= 0) {
+  if (+hou.textContent === 0 && +min.textContent === 0 && +sec.textContent === 0) {
     clearInterval(id);
   }
+};
+
+export const addZeroToTime = t => {
+  t.textContent = t.textContent < 10 ? `0${t.textContent}` : t.textContent;
 };

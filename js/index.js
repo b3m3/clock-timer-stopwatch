@@ -1,4 +1,4 @@
-import { showCurrentTime, tabs, timerCounter } from './functions.js';
+import { showCurrentTime, tabs, timerCounter, addZeroToTime } from './functions.js';
 import { tabsBtns, tabsContents } from './constans.js';
 import { 
   timerStartBlock, 
@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Timer
   let interval;
   let pause = false;
+
+  // add zero start counter
+  timerStartCounter.forEach(time => addZeroToTime(time));
 
   timerPauseBtn.addEventListener('click', () => {
     pause = !pause
