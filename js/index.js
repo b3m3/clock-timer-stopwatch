@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Timer
   let interval;
   let pause = false;
-
-  // add zero start counter
+  
   timerStartCounter.forEach(time => addZeroToTime(time));
 
   timerPauseBtn.addEventListener('click', () => {
@@ -38,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (pause) {
       clearInterval(interval);
+      timerPauseBtn.classList.add('pause');
     } else {
+      timerPauseBtn.classList.remove('pause');
       interval = setInterval(() => {
         timerCounter(interval, timerHours, timerMinutes, timerSeconds);
       }, 1000)
