@@ -26,3 +26,21 @@ export const tabs = (buttons, contents, index, activeClass) => {
   addActiveClass(buttons);
   addActiveClass(contents);
 };
+
+export const timerCounter = (id, hou, min, sec) => {
+  sec.textContent--;
+
+  if (+hou.textContent > 0 && +min.textContent === 0 && +sec.textContent < 0) {
+    hou.textContent = +hou.textContent - 1;
+    min.textContent = 60;
+  }
+  
+  if (+min.textContent > 0 && +sec.textContent < 0) {
+    min.textContent = +min.textContent -1;
+    sec.textContent = 59;
+  }
+
+  if (+hou.textContent === 0 && +min.textContent === 0 && +sec.textContent <= 0) {
+    clearInterval(id);
+  }
+};
