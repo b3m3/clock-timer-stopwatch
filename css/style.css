@@ -303,6 +303,26 @@ body {
   max-width: 37.5rem;
 }
 
+.timer__clock svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.timer__clock circle {
+  fill: transparent;
+  transform: rotate(-90deg);
+}
+
+.timer__clock circle:nth-child(2) {
+  stroke: var(--green-400);
+  stroke-width: 9%;
+  stroke-dasharray: 0 284%;
+  transition: .6s ease;
+}
+
 .timer__circle {
   position: relative;
   width: 100%;

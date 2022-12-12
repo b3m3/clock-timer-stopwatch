@@ -1,6 +1,13 @@
-import { showCurrentTime, tabs, timerCounter, addZeroToTime } from './functions.js';
-import { tabsBtns, tabsContents } from './constans.js';
 import { 
+  showCurrentTime,
+  tabs,
+  timerCounter,
+  addZeroToTime,
+  getTotalSeconds 
+} from './functions.js';
+import {
+  tabsBtns,
+  tabsContents,
   timerStartBlock, 
   timerNextBlock, 
   timerStartCounter,
@@ -10,7 +17,8 @@ import {
   timerPauseBtn,
   timerHours,
   timerMinutes,
-  timerSeconds
+  timerSeconds,
+  circleProgress
 } from './constans.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,8 +37,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // Timer
   let interval;
   let pause = false;
+  let percentPerSecond = 0;
+  let totalPrecent = 0;
   
   timerStartCounter.forEach(time => addZeroToTime(time));
+
+  const intervalBody = () => {
+    totalPrecent += percentPerSecond;
+    timerCounter(interval, timerHours, timerMinutes, timerSeconds);
+    circleProgress.style.strokeDasharray = `${totalPrecent}% 284%`;
+  
+    if (totalPrecent === 284) {
+      timerPauseBtn.classList.remove('active');
+    }
+  }; // Function for a setIntervals
+
+  const handleClassesStartBtn = () => {
+    timerCancelBtn.classList.add('active');
+    timerNextBlock.classList.add('active');
+    timerPauseBtn.classList.add('active');
+    timerStartBtn.classList.add('hidden');
+    timerPauseBtn.classList.remove('hidden');
+    timerStartBlock.classList.remove('active');
+  }; // Function for a timerStartBtn
+
+  const handleClassesCancelBtn = () => {
+    timerStartBlock.classList.add('active');
+    timerPauseBtn.classList.add('hidden');
+    timerStartBtn.classList.remove('hidden');
+    timerNextBlock.classList.remove('active');
+    timerCancelBtn.classList.remove('active');
+    timerPauseBtn.classList.remove('pause');
+  }; // Function for a timerCancelBtn
+
 
   timerPauseBtn.addEventListener('click', () => {
     pause = !pause
@@ -39,37 +78,27 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(interval);
       timerPauseBtn.classList.add('pause');
     } else {
+      interval = setInterval(intervalBody, 1000);
       timerPauseBtn.classList.remove('pause');
-      interval = setInterval(() => {
-        timerCounter(interval, timerHours, timerMinutes, timerSeconds);
-      }, 1000)
     }
   });
-
+  
   timerStartBtn.addEventListener('click', () => {
-    timerCancelBtn.classList.add('active');
-    timerNextBlock.classList.add('active');
-    timerPauseBtn.classList.add('active');
-    timerStartBtn.classList.add('hidden');
-    timerPauseBtn.classList.remove('hidden');
-    timerStartBlock.classList.remove('active');
-
+    handleClassesStartBtn();
+    
     timerStartCounter.forEach((t, i) => {
       timerNextCounter[i].textContent = t.textContent;
     });
 
-    interval = setInterval(() => {
-      timerCounter(interval, timerHours, timerMinutes, timerSeconds);
-    }, 1000)
+    percentPerSecond = 284 / getTotalSeconds(timerHours, timerMinutes, timerSeconds);
+    totalPrecent = 0;
+    
+    interval = setInterval(intervalBody, 1000);
   });
   
   timerCancelBtn.addEventListener('click', () => {
-    timerStartBlock.classList.add('active');
-    timerPauseBtn.classList.add('hidden');
-    timerStartBtn.classList.remove('hidden');
-    timerNextBlock.classList.remove('active');
-    timerCancelBtn.classList.remove('active');
-    
+    handleClassesCancelBtn();
+    circleProgress.style.strokeDasharray = '0% 284%';
     clearInterval(interval);
     pause = false;
   });

@@ -16,3 +16,5 @@ export const timerPauseBtn = document.querySelector('.timer-pause');
 export const timerHours = document.querySelector('.teh');
 export const timerMinutes = document.querySelector('.tem');
 export const timerSeconds = document.querySelector('.tes');
+
+export const circleProgress = document.querySelector('.timer__clock svg circle:nth-child(2)');
