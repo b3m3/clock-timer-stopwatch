@@ -18,3 +18,5 @@ export const timerMinutes = document.querySelector('.tem');
 export const timerSeconds = document.querySelector('.tes');
 
 export const circleProgress = document.querySelector('.timer__clock svg circle:nth-child(2)');
+export const bell = document.querySelector('.timer__end img');
+export const signal = document.querySelector('audio');

@@ -39,16 +39,45 @@ body {
 
 /*keyframes*/
 
-@keyframes blink-button {
+@keyframes blink {
   0%{
     color: var(--gray-800);
-
   }
   50%{
     color: rgba(22, 26, 37, .2);
   }
   100% {
     color: var(--gray-800);
+  }
+}
+
+@keyframes tremor {
+  0%{
+    transform: scale(1.5) rotate(25deg);
+  }
+  25% {
+    transform: scale(1.5) rotate(0);
+  }
+  50% {
+    transform: scale(1.5) rotate(-25deg);
+  }
+  75% {
+    transform: scale(1.5) rotate(0);
+  }
+  100% {
+    transform: scale(1.5) rotate(25deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -303,6 +332,10 @@ body {
   max-width: 37.5rem;
 }
 
+.timer__clock.scale {
+  animation: scale .8s linear infinite;
+}
+
 .timer__clock svg {
   position: absolute;
   top: 0;
@@ -320,7 +353,7 @@ body {
   stroke: var(--green-400);
   stroke-width: 9%;
   stroke-dasharray: 0 284%;
-  transition: .6s ease;
+  transition: .35s ease;
 }
 
 .timer__circle {
@@ -392,6 +425,10 @@ body {
   opacity: .5;
 }
 
+.timer__end img.active {
+  animation: tremor .25s linear infinite;
+}
+
 .timer__buttons {
   margin-top: 2.5rem;
   display: flex;
@@ -440,5 +477,5 @@ body {
 
 .timer__buttons button.pause {
   box-shadow: inset -2px -2px 2px #FFFFFF, inset 4px 4px 4px rgba(22, 25, 36, 0.1);
-  animation: blink-button 1s linear infinite;
+  animation: blink 1s linear infinite;
 }

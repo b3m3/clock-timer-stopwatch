@@ -60,3 +60,12 @@ export const getTotalSeconds = (hours, minutes, seconds) => {
 
   return h + m + s;
 };
+
+export const playSignal = audio => {
+  audio.play();
+}
+
+export const stopSignal = audio => {
+  audio.pause();
+  audio.currentTime = 0;
+}

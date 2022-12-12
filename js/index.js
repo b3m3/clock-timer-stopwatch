@@ -3,7 +3,9 @@ import {
   tabs,
   timerCounter,
   addZeroToTime,
-  getTotalSeconds 
+  getTotalSeconds,
+  playSignal,
+  stopSignal
 } from './functions.js';
 import {
   tabsBtns,
@@ -18,7 +20,9 @@ import {
   timerHours,
   timerMinutes,
   timerSeconds,
-  circleProgress
+  circleProgress,
+  bell,
+  signal
 } from './constans.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -46,9 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
     totalPrecent += percentPerSecond;
     timerCounter(interval, timerHours, timerMinutes, timerSeconds);
     circleProgress.style.strokeDasharray = `${totalPrecent}% 284%`;
-  
+    
     if (totalPrecent === 284) {
       timerPauseBtn.classList.remove('active');
+      bell.classList.add('active');
+      playSignal(signal);
+      timerNextBlock.classList.add('scale');
     }
   }; // Function for a setIntervals
 
@@ -68,6 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
     timerNextBlock.classList.remove('active');
     timerCancelBtn.classList.remove('active');
     timerPauseBtn.classList.remove('pause');
+    bell.classList.remove('active');
+    timerNextBlock.classList.remove('scale');
   }; // Function for a timerCancelBtn
 
 
@@ -101,5 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
     circleProgress.style.strokeDasharray = '0% 284%';
     clearInterval(interval);
     pause = false;
+    stopSignal(signal);
   });
 });
