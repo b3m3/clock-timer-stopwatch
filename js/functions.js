@@ -49,9 +49,7 @@ export const timerCounter = (id, hou, min, sec) => {
   }
 };
 
-export const addZeroToTime = t => {
-  t.textContent = t.textContent < 10 ? `0${t.textContent}` : t.textContent;
-};
+export const addZeroToTime = t => t < 10 ? '0' + t : t;
 
 export const getTotalSeconds = (hours, minutes, seconds) => {
   const h = +hours.textContent * 60 * 60;
@@ -63,9 +61,20 @@ export const getTotalSeconds = (hours, minutes, seconds) => {
 
 export const playSignal = audio => {
   audio.play();
-}
+};
 
 export const stopSignal = audio => {
   audio.pause();
   audio.currentTime = 0;
-}
+};
+
+export const createTimeCounter = (wrappers, func) => {
+  wrappers.forEach(wrapp => {
+    for (let index = 0; index <= 59; index++) {
+      const span = document.createElement('span');
+      span.classList.add('tst', 'swiper-slide');
+      span.textContent = func(index);
+      wrapp.append(span);
+    }
+  });
+};

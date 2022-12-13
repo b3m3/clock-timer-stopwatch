@@ -1,3 +1,4 @@
+// Functions
 import { 
   showCurrentTime,
   tabs,
@@ -5,13 +6,17 @@ import {
   addZeroToTime,
   getTotalSeconds,
   playSignal,
-  stopSignal
+  stopSignal,
+  createTimeCounter
 } from './functions.js';
+
+// Constans
 import {
   tabsBtns,
   tabsContents,
   timerStartBlock, 
   timerNextBlock, 
+  swiperWrappers,
   timerStartCounter,
   timerNextCounter,
   timerCancelBtn,
@@ -25,27 +30,31 @@ import {
   signal
 } from './constans.js';
 
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Main Tabs
+
+  // MAIN TABS
   tabsBtns.forEach((btn, i) => {
     btn.addEventListener('click', () => tabs(tabsBtns, tabsContents, i, 'active'));
   });
 
-  // Clock
+  // CLOCK
   setInterval(() => {
     showCurrentTime('.arrow-hours', 'getHours', 12);
     showCurrentTime('.arrow-minutes', 'getMinutes', 60);
     showCurrentTime('.arrow-seconds', 'getSeconds', 60);
   }, 1000);
 
-  // Timer
+  // TIMER
   let interval;
   let pause = false;
   let percentPerSecond = 0;
   let totalPrecent = 0;
-  
-  timerStartCounter.forEach(time => addZeroToTime(time));
 
+  createTimeCounter(swiperWrappers, addZeroToTime); // Create time elements for counter
+  const swiper = new Swiper('.swiper', {direction: 'vertical'}); // Counter Swiper
+  
   const intervalBody = () => {
     totalPrecent += percentPerSecond;
     timerCounter(interval, timerHours, timerMinutes, timerSeconds);
@@ -57,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
       playSignal(signal);
       timerNextBlock.classList.add('scale');
     }
-  }; // Function for a setIntervals
+  }; // function for a setIntervals
 
   const handleClassesStartBtn = () => {
     timerCancelBtn.classList.add('active');
@@ -66,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     timerStartBtn.classList.add('hidden');
     timerPauseBtn.classList.remove('hidden');
     timerStartBlock.classList.remove('active');
-  }; // Function for a timerStartBtn
+  }; // function for a timerStartBtn
 
   const handleClassesCancelBtn = () => {
     timerStartBlock.classList.add('active');
@@ -77,8 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     timerPauseBtn.classList.remove('pause');
     bell.classList.remove('active');
     timerNextBlock.classList.remove('scale');
-  }; // Function for a timerCancelBtn
-
+  }; // function for a timerCancelBtn
 
   timerPauseBtn.addEventListener('click', () => {
     pause = !pause
@@ -90,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
       interval = setInterval(intervalBody, 1000);
       timerPauseBtn.classList.remove('pause');
     }
-  });
+  }); // event pause button
   
   timerStartBtn.addEventListener('click', () => {
     handleClassesStartBtn();
@@ -103,13 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     totalPrecent = 0;
     
     interval = setInterval(intervalBody, 1000);
-  });
+  }); // event start button
   
   timerCancelBtn.addEventListener('click', () => {
     handleClassesCancelBtn();
-    circleProgress.style.strokeDasharray = '0% 284%';
-    clearInterval(interval);
-    pause = false;
     stopSignal(signal);
-  });
+    clearInterval(interval);
+    circleProgress.style.strokeDasharray = '0% 284%';
+    pause = false;
+  }); // event cancel button
 });

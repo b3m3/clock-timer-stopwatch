@@ -6,6 +6,8 @@ export const tabsContents = document.querySelectorAll('.content');
 export const timerStartBlock = document.querySelector('.timer__start');
 export const timerNextBlock = document.querySelector('.timer__clock');
 
+export const swiperWrappers = document.querySelectorAll('.swiper-wrapper');
+
 export const timerStartCounter = document.querySelectorAll('.tst');
 export const timerNextCounter = document.querySelectorAll('.tet');
 
