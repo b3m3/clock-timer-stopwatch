@@ -301,7 +301,9 @@ body {
 }
 
 .timer__start {
-  padding: calc(30px + calc(50 - 30) * ((100vw - 320px) / (2560 - 320)));
+  position: relative;
+  padding: 3.125rem 4.6875rem 3.125rem 3.75rem;
+  /* padding: calc(30px + calc(50 - 30) * ((100vw - 320px) / (2560 - 320))); */
   background: #EEF0F7;
   box-shadow: -8px -8px 20px #FFFFFF, 8px 8px 20px rgba(22, 25, 36, 0.1), inset -8px -8px 20px rgba(255, 255, 255, 0.5), inset 8px 8px 20px rgba(22, 25, 36, 0.15);
   border-radius: 6.25rem;
@@ -310,8 +312,39 @@ body {
   gap: 2.1875rem;
 }
 
+.timer__start .abs-timer-label {
+  position: absolute;
+  top: 50%;
+  font-size: 15px;
+  color: var(--gray-800);
+}
+
+.timer__start .abs_hours {
+  left: 31%;
+}
+
+.timer__start .abs_minutes {
+  left: 56%;
+}
+
+.timer__start .abs_seconds {
+  left: 80%;
+}
+
+@media screen and (max-width: 425px) {
+  .timer__start {
+    padding: 1.5625rem 2.8125rem 1.5625rem 1.5625rem;
+    gap: 1.875rem;
+  }
+  .abs_hours {
+    left: 27%;
+  }
+  .abs_seconds {
+    left: 85%;
+  }
+}
+
 .timer__start ul {
-  position: relative;
   max-height: 4.0625rem;
 }
 
