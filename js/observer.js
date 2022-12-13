@@ -1,11 +1,11 @@
 import { timerStartBtn } from './constans.js';
 import { getTotalSeconds } from './functions.js';
 
-export const callback = (mutations) => {
-  let startHours = 0;
-  let startMinutes = 0;
-  let startSeconds = 0;
+let startHours = 0;
+let startMinutes = 0;
+let startSeconds = 0;
 
+export const callback = (mutations) => {
   mutations.forEach(mutation => {
     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
       if (mutation.target.classList.contains('swiper-slide-active')) {
@@ -32,7 +32,7 @@ export const callback = (mutations) => {
   }
 };
 
-export const observerOptions = {
+export const options = {
   childList: true,
   attributes: true,
   subtree: true,

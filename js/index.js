@@ -29,7 +29,7 @@ import {
   signal
 } from './constans.js';
 
-import { callback, observerOptions } from './observer.js';
+import { callback, options } from './observer.js';
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -55,6 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
   createTimeElements(swiperWrappers, addZeroToTime); // Create time elements for counter
   const counterElements  = document.querySelectorAll('.tst'); // Get time elements 
   const swiper = new Swiper('.swiper', {direction: 'vertical'}); // Counter Swiper
+
+  const observer = new MutationObserver(callback);
+  observer.observe(timerStartBlock, options);
 
   const intervalBody = () => {
     totalPrecent += percentPerSecond;
@@ -113,6 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    console.log(getTotalSeconds(timerHours, timerMinutes, timerSeconds));
+
     percentPerSecond = 284 / getTotalSeconds(timerHours, timerMinutes, timerSeconds);
     totalPrecent = 0;
     
@@ -126,7 +131,4 @@ document.addEventListener('DOMContentLoaded', () => {
     circleProgress.style.strokeDasharray = '0% 284%';
     pause = false;
   }); // event cancel button
-
-  const observer = new MutationObserver(callback);
-  observer.observe(timerStartBlock, observerOptions);
 });
