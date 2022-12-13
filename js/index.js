@@ -7,7 +7,7 @@ import {
   getTotalSeconds,
   playSignal,
   stopSignal,
-  createTimeCounter
+  createTimeElements
 } from './functions.js';
 
 // Constans
@@ -17,7 +17,6 @@ import {
   timerStartBlock, 
   timerNextBlock, 
   swiperWrappers,
-  timerStartCounter,
   timerNextCounter,
   timerCancelBtn,
   timerStartBtn,
@@ -52,9 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let percentPerSecond = 0;
   let totalPrecent = 0;
 
-  createTimeCounter(swiperWrappers, addZeroToTime); // Create time elements for counter
+  createTimeElements(swiperWrappers, addZeroToTime); // Create time elements for counter
+  const counterElements  = document.querySelectorAll('.tst'); // Get time elements 
   const swiper = new Swiper('.swiper', {direction: 'vertical'}); // Counter Swiper
-  
+
   const intervalBody = () => {
     totalPrecent += percentPerSecond;
     timerCounter(interval, timerHours, timerMinutes, timerSeconds);
@@ -102,9 +102,14 @@ document.addEventListener('DOMContentLoaded', () => {
   
   timerStartBtn.addEventListener('click', () => {
     handleClassesStartBtn();
-    
-    timerStartCounter.forEach((t, i) => {
-      timerNextCounter[i].textContent = t.textContent;
+
+    let customIndex = -1;
+
+    counterElements.forEach(el => {
+      if (el.classList.contains('swiper-slide-active')) {
+        customIndex++;
+        timerNextCounter[customIndex].textContent = el.textContent;
+      }
     });
 
     percentPerSecond = 284 / getTotalSeconds(timerHours, timerMinutes, timerSeconds);
@@ -120,4 +125,46 @@ document.addEventListener('DOMContentLoaded', () => {
     circleProgress.style.strokeDasharray = '0% 284%';
     pause = false;
   }); // event cancel button
+
+
+  //*************************************************************************** */
+  const callback = (mutations) => {
+    let h = 0;
+    let m = 0;
+    let s = 0;
+
+    mutations.forEach(mutation => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        if (mutation.target.classList.contains('swiper-slide-active')) {
+          if (mutation.target.closest('.h')) {
+            h = mutation.target.textContent;
+          }
+
+          if (mutation.target.closest('.m')) {
+            m = mutation.target.textContent;
+          }
+
+          if (mutation.target.closest('.s')) {
+            s = mutation.target.textContent;
+          }
+        }
+      }
+    });
+
+    if (getTotalSeconds(+h, +m, +s)) {
+      timerStartBtn.classList.add('active');
+    } else {
+      timerStartBtn.classList.remove('active');
+    }
+  };
+
+  const observer = new MutationObserver(callback);
+
+  observer.observe(timerStartBlock, {
+    childList: true,
+    attributes: true,
+    subtree: true,
+    attributeFilter: ['class'],
+  });
+  //*************************************************************************** */
 });

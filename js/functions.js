@@ -44,19 +44,19 @@ export const timerCounter = (id, hou, min, sec) => {
     sec.textContent = 59;
   }
 
-  if (+hou.textContent === 0 && +min.textContent === 0 && +sec.textContent === 0) {
+  if (+hou.textContent === 0 && +min.textContent === 0 && +sec.textContent <= 0) {
     clearInterval(id);
   }
 };
 
 export const addZeroToTime = t => t < 10 ? '0' + t : t;
 
-export const getTotalSeconds = (hours, minutes, seconds) => {
-  const h = +hours.textContent * 60 * 60;
-  const m = +minutes.textContent * 60;
-  const s = +seconds.textContent;
+export const getTotalSeconds = (h, m, s) => {
+  if (typeof h === 'number') {
+    return (+h * 60 * 60) + (+m * 60) + (+s);
+  } 
 
-  return h + m + s;
+  return (+h.textContent * 60 * 60) + (+m.textContent * 60) + (+s.textContent);
 };
 
 export const playSignal = audio => {
@@ -68,7 +68,7 @@ export const stopSignal = audio => {
   audio.currentTime = 0;
 };
 
-export const createTimeCounter = (wrappers, func) => {
+export const createTimeElements = (wrappers, func) => {
   wrappers.forEach(wrapp => {
     for (let index = 0; index <= 59; index++) {
       const span = document.createElement('span');
