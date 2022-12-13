@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 
-/*reset*/
-
+/* reset */
 * {padding: 0;margin: 0;box-sizing: border-box;font-family:inherit;font-weight: inherit;list-style: none;text-decoration: none;color: inherit;}
 html {display: block;font-size: 100%;scroll-behavior: smooth;height: 100%;}
 body {height: 100%;}
@@ -37,7 +36,7 @@ body {
   display: block;
 }
 
-/*keyframes*/
+/* keyframes */
 
 @keyframes blink {
   0%{
@@ -81,7 +80,7 @@ body {
   }
 }
 
-/*header*/
+/* header */
 
 .header {
   display: flex;
@@ -142,7 +141,7 @@ body {
   }
 }
 
-/*clock*/
+/* clock */
 
 .clock {
   display: none;
@@ -279,7 +278,7 @@ body {
   top: calc(50% - calc(6% / 2));
 }
 
-/*timer*/
+/* timer */
 
 .timer {
   padding: 3.125rem 0;
@@ -327,6 +326,7 @@ body {
 .timer__start li span {
   font-size: 3em;
   line-height: 130%;
+  user-select: none;
 }
 
 .timer__clock {
@@ -405,10 +405,6 @@ body {
 
 .timer__time li {
   font-size: calc(30px + calc(80 - 30) * ((100vw - 320px) / (2560 - 320)));
-}
-
-.timer__time i {
-  font-style: unset;
 }
 
 .timer__end {

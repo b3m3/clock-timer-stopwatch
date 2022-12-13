@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-  <!-- <script defer="defer" src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script> -->
   <script defer="defer" type="module" src="js/index.js"></script>
   <title>Clock</title>
 </head>
@@ -56,19 +55,19 @@
             <!--First block-->
             <div class="timer-block timer__start active">
               <ul class="swiper">
-                <li class="swiper-wrapper h">
+                <li class="swiper-wrapper start-hours">
                   <!-- create js element -->
                 </li>
               </ul>
 
               <ul class="swiper">
-                <li class="swiper-wrapper m">
+                <li class="swiper-wrapper start-minutes">
                   <!-- create js element -->
                 </li>
               </ul>
 
               <ul class="swiper">
-                <li class="swiper-wrapper s">
+                <li class="swiper-wrapper start-seconds">
                   <!-- create js element -->
                 </li>
               </ul>
@@ -80,15 +79,15 @@
                 <div class="timer__time">
                   <ul>
                     <li>
-                      <i class="tet teh">00</i>
+                      <span class="tet teh">00</span>
                       :
                     </li>
                     <li>
-                      <i class="tet tem">00</i>
+                      <span class="tet tem">00</span>
                       :
                     </li>
                     <li>
-                      <i class="tet tes">00</i>
+                      <span class="tet tes">00</span>
                     </li>
                   </ul>
                   <div class="timer__end">

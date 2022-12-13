@@ -29,6 +29,7 @@ import {
   signal
 } from './constans.js';
 
+import { callback, observerOptions } from './observer.js';
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -126,45 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
     pause = false;
   }); // event cancel button
 
-
-  //*************************************************************************** */
-  const callback = (mutations) => {
-    let h = 0;
-    let m = 0;
-    let s = 0;
-
-    mutations.forEach(mutation => {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-        if (mutation.target.classList.contains('swiper-slide-active')) {
-          if (mutation.target.closest('.h')) {
-            h = mutation.target.textContent;
-          }
-
-          if (mutation.target.closest('.m')) {
-            m = mutation.target.textContent;
-          }
-
-          if (mutation.target.closest('.s')) {
-            s = mutation.target.textContent;
-          }
-        }
-      }
-    });
-
-    if (getTotalSeconds(+h, +m, +s)) {
-      timerStartBtn.classList.add('active');
-    } else {
-      timerStartBtn.classList.remove('active');
-    }
-  };
-
   const observer = new MutationObserver(callback);
-
-  observer.observe(timerStartBlock, {
-    childList: true,
-    attributes: true,
-    subtree: true,
-    attributeFilter: ['class'],
-  });
-  //*************************************************************************** */
+  observer.observe(timerStartBlock, observerOptions);
 });
