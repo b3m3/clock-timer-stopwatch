@@ -18,6 +18,8 @@ export const timerHours = document.querySelector('.teh');
 export const timerMinutes = document.querySelector('.tem');
 export const timerSeconds = document.querySelector('.tes');
 
+export const timerEndTime = document.querySelector('.timer-end-time');
+
 export const circleProgress = document.querySelector('.circle-progress');
 export const bell = document.querySelector('.timer__end img');
 export const signal = document.querySelector('audio');

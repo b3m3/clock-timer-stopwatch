@@ -7,7 +7,8 @@ import {
   getTotalSeconds,
   playSignal,
   stopSignal,
-  createTimeElements
+  createTimeElements,
+  getTimerEndTime
 } from './functions.js';
 
 // Constans
@@ -24,6 +25,7 @@ import {
   timerHours,
   timerMinutes,
   timerSeconds,
+  timerEndTime,
   circleProgress,
   bell,
   signal
@@ -104,6 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       interval = setInterval(intervalBody, 1000);
       timerPauseBtn.classList.remove('pause');
+
+      getTimerEndTime(
+        getTotalSeconds(timerHours, timerMinutes, timerSeconds),
+        timerEndTime
+      );
     }
   }); // event pause button
   
@@ -119,8 +126,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    console.log(getTotalSeconds(timerHours, timerMinutes, timerSeconds));
-
+    getTimerEndTime(
+      getTotalSeconds(timerHours, timerMinutes, timerSeconds), 
+      timerEndTime
+    );
+  
     percentPerSecond = 284 / getTotalSeconds(timerHours, timerMinutes, timerSeconds);
     totalPrecent = 0;
     

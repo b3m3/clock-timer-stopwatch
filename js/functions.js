@@ -49,7 +49,9 @@ export const timerCounter = (id, hou, min, sec) => {
   }
 };
 
-export const addZeroToTime = t => t < 10 ? '0' + t : t;
+export const addZeroToTime = t => {
+  return t < 10 ? '0' + t : t
+};
 
 export const getTotalSeconds = (h, m, s) => {
   if (typeof h === 'number') {
@@ -77,4 +79,13 @@ export const createTimeElements = (wrappers, func) => {
       wrapp.append(span);
     }
   });
+};
+
+export const getTimerEndTime = (time, selector) => {
+  const endTime = new Date().getTime() + (time * 1000);
+
+  const endH = new Date(endTime).getHours();
+  const endM = new Date(endTime).getMinutes();
+
+  selector.textContent = addZeroToTime(endH) + " : " + addZeroToTime(endM);
 };
