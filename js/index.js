@@ -36,7 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // MAIN TABS
   tabsBtns.forEach((btn, i) => {
-    btn.addEventListener('click', () => tabs(tabsBtns, tabsContents, i, 'active'));
+    btn.addEventListener('click', () => {
+      tabs(tabsBtns, tabsContents, i, 'active');
+      document.title = btn.textContent; // Change head title
+    });
   });
 
   // CLOCK
