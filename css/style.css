@@ -49,21 +49,20 @@ section.active {
 
 .circle-wrapp {
   position: relative;
-  width: 500px;
   width: calc(300px + calc(800 - 300) * ((100vw - 320px) / (2560 - 320)));
 }
 
 .circle-wrapp::before {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   content: '';
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
-  height: 50%;
-  background: var(--gray-110);
-  box-shadow: var(--shadow-8);
+  width: 80%;
+  height: 80%;
+  background: linear-gradient(133.13deg, #EFF2F7 47.78%, rgba(201, 210, 226, 0.4) 86.98%);
+  box-shadow: 10px 10px 60px rgba(22, 25, 36, 0.2);
   border-radius: 50%;
 }
 
@@ -108,6 +107,55 @@ section.active {
   top: calc(50% - 35%);
   background: var(--rad-400);
   transform-origin: center calc(100% - calc(2px / 2));
+}
+
+.buttons-wrapp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-body {
+  display: flex;
+  background: var(--gray-100);
+  box-shadow: var(--shadow-4);
+  border-radius: 2rem;
+  padding: .5rem .75rem;
+  gap: .625rem;
+}
+
+.buttons-body button {
+  padding: .625rem 1.25rem;
+  background: var(--gray-50);
+  background: #edf0f5;
+  box-shadow: var(--shadow-4);
+  color: rgba(22, 26, 37, .1);
+  border-radius: 2rem;
+  border: 2px solid var(--gray-50);
+  transition: .3s;
+  cursor: auto;
+  pointer-events: none;
+}
+
+@media (any-hover: hover) {
+  .buttons-body button:hover {
+    box-shadow: inset -2px -2px 2px #fff, inset 2px 2px 2px rgba(22, 25, 36, 0.1);
+  }
+}
+
+.buttons-body button.active {
+  cursor: pointer;
+  pointer-events: all;
+  color: var(--gray-800);
+}
+
+.buttons-body button.hidden {
+  display: none;
+}
+
+.buttons-body button.pause {
+  box-shadow: var(--shadow-i-4);
+  animation: blink 1s linear infinite;
 }
 
 /* keyframes */
@@ -201,15 +249,15 @@ section.active {
 
 .clock__wrapp::after {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   content: '';
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
-  background: linear-gradient(133.13deg, #EFF2F7 47.78%, rgba(201, 210, 226, 0.4) 86.98%);
-  box-shadow: 10px 10px 60px rgba(22, 25, 36, 0.2);
+  width: 50%;
+  height: 50%;
+  background: var(--gray-110);
+  box-shadow: var(--shadow-8);
   border-radius: 50%;
 }
 
@@ -239,141 +287,74 @@ section.active {
 
 /* timer */
 
-.timer__wrapp {
-  display: flex;
+.timer {
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 1.875rem;
 }
 
-.timer-block {
+.timer-counter {
   display: none;
 }
 
-.timer-block.active {
+.timer-counter.active {
   display: flex;
 }
 
-.timer__start {
+.timer__first {
   position: relative;
-  padding: 3.125rem 4.6875rem 3.125rem 3.75rem;
-  /* padding: calc(30px + calc(50 - 30) * ((100vw - 320px) / (2560 - 320))); */
-  background: #EEF0F7;
-  box-shadow: -8px -8px 20px #FFFFFF, 8px 8px 20px rgba(22, 25, 36, 0.1), inset -8px -8px 20px rgba(255, 255, 255, 0.5), inset 8px 8px 20px rgba(22, 25, 36, 0.15);
-  border-radius: 6.25rem;
-
+  padding: calc(35px + calc(50 - 35) * ((100vw - 320px) / (2560 - 320)));
   align-items: center;
-  gap: 2.1875rem;
+  gap: calc(25px + calc(35 - 25) * ((100vw - 320px) / (2560 - 320)));
+  background: var(--gray-110);
+  box-shadow: var(--shadow-8);
+  border-radius: 6.25rem;
 }
 
-.timer__start .abs-timer-label {
-  position: absolute;
-  top: 50%;
-  font-size: 15px;
-  color: var(--gray-800);
-}
-
-.timer__start .abs_hours {
-  left: 31%;
-}
-
-.timer__start .abs_minutes {
-  left: 56%;
-}
-
-.timer__start .abs_seconds {
-  left: 80%;
-}
-
-@media screen and (max-width: 425px) {
-  .timer__start {
-    padding: 1.5625rem 2.8125rem 1.5625rem 1.5625rem;
-    gap: 1.875rem;
-  }
-  .abs_hours {
-    left: 27%;
-  }
-  .abs_seconds {
-    left: 85%;
-  }
-}
-
-.timer__start ul {
-  max-height: 4.0625rem;
-}
-
-.timer__start li {
-  font-size: 1rem;
-  line-height: 1.5625rem;
-  color: var(--gray-800);
-  cursor: grab;
-  text-align: center;
-}
-
-.timer__start li span {
-  font-size: 3em;
-  line-height: 130%;
-  user-select: none;
-}
-
-.timer__clock {
+.timer__first .col {
   position: relative;
-  width: 80vmin;
-  max-width: 37.5rem;
 }
 
-.timer__clock.scale {
+.timer__first .col::before {
+  position: absolute;
+  bottom: .625rem;
+  right: 0;
+  opacity: .5;
+  width: 1.75rem;
+  transform: translateX(1.25rem);
+}
+
+.timer__first .col:nth-child(1):before {
+  content: 'hou';
+}
+
+.timer__first .col:nth-child(2):before {
+  content: 'min';
+}
+
+.timer__first .col:nth-child(3):before {
+  content: 'sec';
+}
+
+.timer__first ul {
+  max-height: 4.0625rem;
+  transform: translateX(-0.4375rem);
+}
+
+.timer__first li {
+  cursor: grab;
+  font-size: 3rem;
+  user-select: none;
+  text-align: center;
+  color: var(--gray-800);
+}
+
+.timer__next.scale {
   animation: scale .8s linear infinite;
 }
 
-.timer__clock svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.timer__clock circle {
-  fill: transparent;
-  transform: rotate(-90deg);
-}
-
-.timer__clock circle:nth-child(2) {
-  stroke: var(--green-400);
-  stroke-width: 9%;
-  stroke-dasharray: 0 284%;
-  transition: .35s ease;
-}
-
-.timer__circle {
-  position: relative;
-  width: 100%;
-  padding: 50% 0;
-  border-radius: 50%;
-  background: #EFF2F7;
-  box-shadow: -8px -8px 20px #FFFFFF, 
-    8px 8px 20px rgba(22, 25, 36, 0.1), 
-    inset -8px -8px 20px rgba(255, 255, 255, 0.5), 
-    inset 8px 8px 20px rgba(22, 25, 36, 0.15);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.timer__circle::before {
-  position: absolute;
-  z-index: 1;
-  content: '';
-  width: 80%;
-  height: 80%;
-  background: linear-gradient(133.13deg, #EFF2F7 47.78%, rgba(201, 210, 226, 0.4) 86.98%);
-  box-shadow: 10px 10px 60px rgba(22, 25, 36, 0.2);
-  border-radius: 50%;
-}
-
-.timer__time {
+.timer__next ul {
   position: absolute;
   z-index: 3;
   width: 100%;
@@ -381,21 +362,47 @@ section.active {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  gap: calc(20px + calc(30 - 20) * ((100vw - 320px) / (2560 - 320)));
   color: var(--gray-800);
+  transform: translateY(-10px);
 }
 
-.timer__time ul {
-  display: flex;
-  align-items: center;
-  gap: .3125rem;
+.timer__next li {
+  position: relative;
+  font-size: calc(40px + calc(80 - 40) * ((100vw - 320px) / (2560 - 320)));
 }
 
-.timer__time li {
-  font-size: calc(30px + calc(80 - 30) * ((100vw - 320px) / (2560 - 320)));
+.timer__next li:not(:last-child):before {
+  position: absolute;
+  content: ':';
+  top: 0;
+  right: calc(-15px + calc(-25 - -15) * ((100vw - 320px) / (2560 - 320)));
+}
+
+.timer__next svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.timer__next svg circle {
+  fill: transparent;
+  transform: rotate(-90deg);
+}
+
+.timer__next svg circle:nth-child(2) {
+  stroke: var(--green-400);
+  stroke-width: 9%;
+  stroke-dasharray: 0 284%;
+  transition: .35s ease;
 }
 
 .timer__end {
+  position: absolute;
+  z-index: 3;
+  transform: translateX(10px) translateY(calc(25px + calc(60 - 25) * ((100vw - 320px) / (2560 - 320))));
   display: flex;
   align-items: center;
   gap: .3125rem;
@@ -414,55 +421,4 @@ section.active {
 
 .timer__end img.active {
   animation: tremor .25s linear infinite;
-}
-
-.timer__buttons {
-  margin-top: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.timer__buttons div {
-  background: var(--gray-100);
-  box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.5), 10px 15px 30px rgba(22, 25, 36, 0.1);
-  border-radius: 2rem;
-  padding: .5rem .75rem;
-  display: flex;
-  gap: .625rem;
-}
-
-.timer__buttons button {
-  padding: .625rem 1.25rem;
-  background: var(--gray-50);
-  background: #edf0f5;
-  box-shadow: -4px -4px 4px rgba(255, 255, 255, 0.5), 4px 4px 10px rgba(22, 25, 36, 0.1);
-  color: rgba(22, 26, 37, .1);
-  border-radius: 2rem;
-  border: 2px solid var(--gray-50);
-  transition: .3s;
-
-  cursor: auto;
-  pointer-events: none;
-}
-
-@media (any-hover: hover) {
-  .timer__buttons button:hover {
-    box-shadow: inset -2px -2px 2px #fff, inset 2px 2px 2px rgba(22, 25, 36, 0.1);
-  }
-}
-
-.timer__buttons button.active {
-  cursor: pointer;
-  pointer-events: all;
-  color: var(--gray-800);
-}
-
-.timer__buttons button.hidden {
-  display: none;
-}
-
-.timer__buttons button.pause {
-  box-shadow: inset -2px -2px 2px #FFFFFF, inset 4px 4px 4px rgba(22, 25, 36, 0.1);
-  animation: blink 1s linear infinite;
 }

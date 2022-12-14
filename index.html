@@ -46,77 +46,65 @@
 
     <!-- Timer -->
     <section class="timer">
-      <div class="timer__wrapp">
+      <!-- Timer First Counter -->
+      <div class="timer-counter timer__first active">
 
-        <div class="timer__body">
+        <div class="col">
+          <ul class="swiper">
+            <li class="swiper-wrapper timer-first-hours">
+              <!-- create js element -->
+            </li>
+          </ul>
+        </div>
 
-          <!--First block-->
-          <div class="timer-block timer__start active">
+        <div class="col">
+          <ul class="swiper">
+            <li class="swiper-wrapper timer-first-minutes">
+              <!-- create js element -->
+            </li>
+          </ul>
+        </div>
 
-            <span class="abs-timer-label abs_hours">hou</span>
-            <span class="abs-timer-label abs_minutes">min</span>
-            <span class="abs-timer-label abs_seconds">sec</span>
+        <div class="col">
+          <ul class="swiper">
+            <li class="swiper-wrapper timer-first-seconds">
+              <!-- create js element -->
+            </li>
+          </ul>
+        </div>
+      </div>
 
-            <ul class="swiper">
-              <li class="swiper-wrapper start-hours">
-                <!-- create js element -->
-              </li>
-            </ul>
+      <!-- Timer Next Counter -->
+      <div class="timer-counter timer__next circle-wrapp">
+        <div class="circle-body">
+          <ul>
+            <li class="timer-next-counter timer-next-hours">00</li>
+            <li class="timer-next-counter timer-next-minutes">00</li>
+            <li class="timer-next-counter timer-next-seconds">00</li>
+          </ul>
 
-            <ul class="swiper">
-              <li class="swiper-wrapper start-minutes">
-                <!-- create js element -->
-              </li>
-            </ul>
-
-            <ul class="swiper">
-              <li class="swiper-wrapper start-seconds">
-                <!-- create js element -->
-              </li>
-            </ul>
-          </div>
-
-          <!--Next block-->
-          <div class="timer-block timer__clock">
-            <div class="timer__circle">
-              <div class="timer__time">
-                <ul>
-                  <li>
-                    <span class="tet teh">00</span>
-                    :
-                  </li>
-                  <li>
-                    <span class="tet tem">00</span>
-                    :
-                  </li>
-                  <li>
-                    <span class="tet tes">00</span>
-                  </li>
-                </ul>
-                <div class="timer__end">
-                  <span class="timer-end-time">--:--</span>
-                  <img src="./icon/bell.svg" alt="bell">
-                </div>
-              </div>
-            </div>
-
-            <svg>
-              <circle r="45.1%" cx="-50%" cy="50%" />
-              <circle r="45.1%" cx="-50%" cy="50%" class="circle-progress" />
-            </svg>
-
-            <audio src="./audio/signal.mp3" preload="auto" loop></audio>
-          </div>
-
-          <!--Buttons-->
-          <div class="timer__buttons">
-            <div>
-              <button class="timer-cancel">Cancel</button>
-              <button class="timer-start">Start</button>
-              <button class="timer-pause hidden">Pause</button>
-            </div>
+          <div class="timer__end">
+            <span class="timer-end-time">--:--</span>
+            <img src="./icon/bell.svg" alt="bell">
           </div>
         </div>
+
+        <svg>
+          <circle r="45.1%" cx="-50%" cy="50%" />
+          <circle r="45.1%" cx="-50%" cy="50%" class="circle-progress" />
+        </svg>
+
+        <audio class="signal" src="./audio/signal.mp3" preload="auto" loop></audio>
+      </div>
+
+      <!--Buttons-->
+      <div class="buttons-wrapp">
+        <div class="buttons-body">
+          <button class="timer-cancel">Cancel</button>
+          <button class="timer-start">Start</button>
+          <button class="timer-pause hidden">Pause</button>
+        </div>
+      </div>
     </section>
 
     <!-- Stopwatch -->

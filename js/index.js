@@ -15,8 +15,8 @@ import {
 import {
   tabButtons,
   tabContents,
-  timerStartBlock, 
-  timerNextBlock, 
+  timerFirst, 
+  timerNext, 
   swiperWrappers,
   timerNextCounter,
   timerCancelBtn,
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const swiper = new Swiper('.swiper', {direction: 'vertical'}); // Counter Swiper
 
   const observer = new MutationObserver(callback);
-  observer.observe(timerStartBlock, options);
+  observer.observe(timerFirst, options);
 
   const intervalBody = () => {
     totalPrecent += percentPerSecond;
@@ -73,28 +73,28 @@ document.addEventListener('DOMContentLoaded', () => {
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       playSignal(signal);
-      timerNextBlock.classList.add('scale');
+      timerNext.classList.add('scale');
     }
   }; // function for a setIntervals
 
   const handleClassesStartBtn = () => {
     timerCancelBtn.classList.add('active');
-    timerNextBlock.classList.add('active');
+    timerNext.classList.add('active');
     timerPauseBtn.classList.add('active');
     timerStartBtn.classList.add('hidden');
     timerPauseBtn.classList.remove('hidden');
-    timerStartBlock.classList.remove('active');
+    timerFirst.classList.remove('active');
   }; // function for a timerStartBtn
 
   const handleClassesCancelBtn = () => {
-    timerStartBlock.classList.add('active');
+    timerFirst.classList.add('active');
     timerPauseBtn.classList.add('hidden');
     timerStartBtn.classList.remove('hidden');
-    timerNextBlock.classList.remove('active');
+    timerNext.classList.remove('active');
     timerCancelBtn.classList.remove('active');
     timerPauseBtn.classList.remove('pause');
     bell.classList.remove('active');
-    timerNextBlock.classList.remove('scale');
+    timerNext.classList.remove('scale');
   }; // function for a timerCancelBtn
 
   timerPauseBtn.addEventListener('click', () => {
