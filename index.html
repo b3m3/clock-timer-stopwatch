@@ -8,125 +8,130 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="./icon/favicon.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-  <script defer="defer" type="module" src="js/index.js"></script>
   <title>Clock</title>
 </head>
 
 <body>
   <div class="app">
 
-    <header class="header">
-      <div class="header__wrapp">
-        <nav>
-          <ul>
-            <li class="active">Clock</li>
-            <li>Timer</li>
-            <li>Stopwatch</li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <ul>
+        <li>
+          <button class="active">Clock</button>
+        </li>
+        <li>
+          <button>Timer</button>
+        </li>
+        <li>
+          <button>Stopwatch</button>
+        </li>
+      </ul>
+    </nav>
 
-    <main>
-      <!--clock-->
-      <section class="content clock">
-        <div class="clock__wrapp">
-          <div class="clock__body">
-            <div class="clock__circle">
-              <i class="arrow-hours"></i>
-              <i class="arrow-minutes"></i>
-              <i class="arrow-seconds"></i>
+    <!-- Clock -->
+    <section class="clock active">
+      <div class="circle-wrapp clock__wrapp">
+
+        <div class="circle-body clock__body">
+          <i class="arrow arrow-hours"></i>
+          <i class="arrow arrow-minutes"></i>
+          <i class="arrow arrow-seconds"></i>
+
+          <img class="clock__mask" src="./img/clock-mask.webp" alt="time">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Timer -->
+    <section class="timer">
+      <div class="timer__wrapp">
+
+        <div class="timer__body">
+
+          <!--First block-->
+          <div class="timer-block timer__start active">
+
+            <span class="abs-timer-label abs_hours">hou</span>
+            <span class="abs-timer-label abs_minutes">min</span>
+            <span class="abs-timer-label abs_seconds">sec</span>
+
+            <ul class="swiper">
+              <li class="swiper-wrapper start-hours">
+                <!-- create js element -->
+              </li>
+            </ul>
+
+            <ul class="swiper">
+              <li class="swiper-wrapper start-minutes">
+                <!-- create js element -->
+              </li>
+            </ul>
+
+            <ul class="swiper">
+              <li class="swiper-wrapper start-seconds">
+                <!-- create js element -->
+              </li>
+            </ul>
+          </div>
+
+          <!--Next block-->
+          <div class="timer-block timer__clock">
+            <div class="timer__circle">
+              <div class="timer__time">
+                <ul>
+                  <li>
+                    <span class="tet teh">00</span>
+                    :
+                  </li>
+                  <li>
+                    <span class="tet tem">00</span>
+                    :
+                  </li>
+                  <li>
+                    <span class="tet tes">00</span>
+                  </li>
+                </ul>
+                <div class="timer__end">
+                  <span class="timer-end-time">--:--</span>
+                  <img src="./icon/bell.svg" alt="bell">
+                </div>
+              </div>
             </div>
-            <div class="clock__dots">
-              <span>12</span>
-              <span>6</span>
-              <span>9</span>
-              <span>3</span>
+
+            <svg>
+              <circle r="45.1%" cx="-50%" cy="50%" />
+              <circle r="45.1%" cx="-50%" cy="50%" class="circle-progress" />
+            </svg>
+
+            <audio src="./audio/signal.mp3" preload="auto" loop></audio>
+          </div>
+
+          <!--Buttons-->
+          <div class="timer__buttons">
+            <div>
+              <button class="timer-cancel">Cancel</button>
+              <button class="timer-start">Start</button>
+              <button class="timer-pause hidden">Pause</button>
             </div>
           </div>
         </div>
-      </section>
+    </section>
 
-      <!--timer-->
-      <section class="content timer active">
-        <div class="timer__wrapp">
-
-          <div class="timer__body">
-
-            <!--First block-->
-            <div class="timer-block timer__start active">
-
-              <span class="abs-timer-label abs_hours">hou</span>
-              <span class="abs-timer-label abs_minutes">min</span>
-              <span class="abs-timer-label abs_seconds">sec</span>
-
-              <ul class="swiper">
-                <li class="swiper-wrapper start-hours">
-                  <!-- create js element -->
-                </li>
-              </ul>
-
-              <ul class="swiper">
-                <li class="swiper-wrapper start-minutes">
-                  <!-- create js element -->
-                </li>
-              </ul>
-
-              <ul class="swiper">
-                <li class="swiper-wrapper start-seconds">
-                  <!-- create js element -->
-                </li>
-              </ul>
-            </div>
-
-            <!--Next block-->
-            <div class="timer-block timer__clock">
-              <div class="timer__circle">
-                <div class="timer__time">
-                  <ul>
-                    <li>
-                      <span class="tet teh">00</span>
-                      :
-                    </li>
-                    <li>
-                      <span class="tet tem">00</span>
-                      :
-                    </li>
-                    <li>
-                      <span class="tet tes">00</span>
-                    </li>
-                  </ul>
-                  <div class="timer__end">
-                    <span class="timer-end-time">--:--</span>
-                    <img src="./icon/bell.svg" alt="bell">
-                  </div>
-                </div>
-              </div>
-
-              <svg>
-                <circle r="45.1%" cx="-50%" cy="50%" />
-                <circle r="45.1%" cx="-50%" cy="50%" class="circle-progress" />
-              </svg>
-
-              <audio src="./audio/signal.mp3" preload="auto" loop></audio>
-            </div>
-
-            <!--Buttons-->
-            <div class="timer__buttons">
-              <div>
-                <button class="timer-cancel">Cancel</button>
-                <button class="timer-start">Start</button>
-                <button class="timer-pause hidden">Pause</button>
-              </div>
-            </div>
+    <!-- Stopwatch -->
+    <section class="stopwatch">
+      <div class="stopwatch__wrapp">
+        <div class="stopwatch__body">
+          <div class="stopwatch__circle">
+            Stopwatch
           </div>
-      </section>
-
-      <!--stopwatch-->
-      <section class="content stopwatch">stopwatch</section>
-    </main>
-
+        </div>
+      </div>
+    </section>
   </div>
+
+  <script type="module" src="js/index.js"></script>
 </body>
 
 </html>

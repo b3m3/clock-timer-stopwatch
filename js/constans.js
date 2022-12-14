@@ -1,6 +1,6 @@
 // Tabs
-export const tabsBtns = document.querySelectorAll('.header__wrapp li');
-export const tabsContents = document.querySelectorAll('.content');
+export const tabButtons = document.querySelectorAll('.navbar button');
+export const tabContents = document.querySelectorAll('section');
 
 // Timer
 export const timerStartBlock = document.querySelector('.timer__start');

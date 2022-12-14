@@ -13,8 +13,8 @@ import {
 
 // Constans
 import {
-  tabsBtns,
-  tabsContents,
+  tabButtons,
+  tabContents,
   timerStartBlock, 
   timerNextBlock, 
   swiperWrappers,
@@ -37,9 +37,9 @@ import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.brow
 document.addEventListener('DOMContentLoaded', () => {
 
   // MAIN TABS
-  tabsBtns.forEach((btn, i) => {
+  tabButtons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
-      tabs(tabsBtns, tabsContents, i, 'active');
+      tabs(tabButtons, tabContents, i, 'active');
       document.title = btn.textContent; // Change head title
     });
   });
