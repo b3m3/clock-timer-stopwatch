@@ -28,7 +28,16 @@ import {
   timerEndTime,
   circleProgress,
   bell,
-  signal
+  signal,
+  stopwatchArrrow,
+  stopwatchCounterHours,
+  stopwatchCounterMinutes,
+  stopwatchCounterSeconds,
+  stopwatchStartBtn,
+  stopwatchStopBtn,
+  stopwatchResetBtn,
+  stopwatchCircleBtn,
+  stopwatchCircleList
 } from './constans.js';
 
 import { callback, options } from './observer.js';
@@ -144,4 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     circleProgress.style.strokeDasharray = '0% 284%';
     pause = false;
   }); // event cancel button
+
+  // STOPWATCH
+  
 });

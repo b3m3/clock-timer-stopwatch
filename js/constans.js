@@ -23,3 +23,22 @@ export const timerEndTime = document.querySelector('.timer-end-time');
 export const circleProgress = document.querySelector('.circle-progress');
 export const bell = document.querySelector('.timer__end img');
 export const signal = document.querySelector('.signal');
+
+// Stopwatch
+export const stopwatchArrrow = document.querySelector('.stopwatch-arrrow');
+
+export const stopwatchCounterHours = document.querySelector('.stopwatch__hours');
+export const stopwatchCounterMinutes = document.querySelector('.stopwatch__minutes');
+export const stopwatchCounterSeconds = document.querySelector('.stopwatch__seconds');
+
+export const stopwatchStartBtn = document.querySelector('.stopwatch-start');
+export const stopwatchStopBtn = document.querySelector('.stopwatch-stop');
+export const stopwatchResetBtn = document.querySelector('.stopwatch-reset');
+export const stopwatchCircleBtn = document.querySelector('.stopwatch-circle');
+
+export const stopwatchCircleList = document.querySelector('.stopwatch__list');
+
+
+
+
+
