@@ -446,18 +446,6 @@ section.active {
   border-radius: 50%;
 }
 
-.stopwatch__mask {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
-  object-fit: contain;
-  opacity: .5;
-}
-
 .stopwatch .circle-body::after {
   position: absolute;
   content: '';
@@ -479,15 +467,49 @@ section.active {
   }
 }
 
-.stopwatch ul {
-  width: 100%;
-  max-width: 15.625rem;
-  margin: 0 auto;
+.stopwatch__mask {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  opacity: .5;
+}
+
+.stopwatch__counter {
+  position: absolute;
+  z-index: 3;
+  transform: translateY(calc(30px + calc(70 - 30) * ((100vw - 320px) / (2560 - 320))));
+  display: flex;
+  gap: calc(10px + calc(25 - 10) * ((100vw - 320px) / (2560 - 320)));
+  font-size: calc(16px + calc(56 - 16) * ((100vw - 320px) / (2560 - 320)));
+  opacity: .15;
+}
+
+.stopwatch__counter li {
+  position: relative;
+}
+
+.stopwatch__counter li:not(:last-child):before {
+  position: absolute;
+  content: ':';
+  bottom: 0;
+  right: calc(-8px + calc(-20 - -8) * ((100vw - 320px) / (2560 - 320)));
+}
+
+
+.stopwatch__list {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 4px;
+  width: 100%;
+  max-width: 15.625rem;
+  margin: 0 auto;
   background: var(--gray-110);
   box-shadow: var(--shadow-4);
   border-radius: 2rem;
@@ -495,13 +517,11 @@ section.active {
   transition: .3s ease;
 }
 
-.stopwatch ul li {
+.stopwatch__list li {
+  display: flex;
+  gap: .625rem;
   font-size: .875rem;
   line-height: 150%;
   color: var(--gray-800);
   opacity: .75;
-
-  display: flex;
-  gap: 10px;
 }
-
