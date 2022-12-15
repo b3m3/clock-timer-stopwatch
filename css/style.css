@@ -36,7 +36,7 @@ body {
   padding: 1.25rem .625rem;
   display: flex;
   flex-direction: column;
-  grid-row-gap: calc(50px + calc(100 - 50) * ((100vw - 320px) / (2560 - 320)));
+  grid-row-gap: calc(30px + calc(80 - 30) * ((100vw - 320px) / (2560 - 320)));
 }
 
 section {
@@ -247,7 +247,7 @@ section.active {
   justify-content: center;
 }
 
-.clock__wrapp::after {
+.clock .circle-wrapp::after {
   position: absolute;
   z-index: 2;
   content: '';
@@ -257,11 +257,11 @@ section.active {
   width: 50%;
   height: 50%;
   background: var(--gray-110);
-  box-shadow: var(--shadow-8);
+  box-shadow: var(--shadow-i-4);
   border-radius: 50%;
 }
 
-.clock__body::after {
+.clock .circle-body::after {
   position: absolute;
   content: '';
   z-index: 3;
@@ -422,3 +422,86 @@ section.active {
 .timer__end img.active {
   animation: tremor .25s linear infinite;
 }
+
+/* Stopwatch */
+
+.stopwatch {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.stopwatch .circle-wrapp::after {
+  position: absolute;
+  z-index: 2;
+  content: '';
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background: var(--gray-110);
+  box-shadow: var(--shadow-i-4);
+  border-radius: 50%;
+}
+
+.stopwatch__mask {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  opacity: .5;
+}
+
+.stopwatch .circle-body::after {
+  position: absolute;
+  content: '';
+  z-index: 3;
+  width: 3%;
+  height: 3%;
+  background: var(--gradient);
+  box-shadow: 4px 4px 10px rgba(22, 25, 36, 0.15);
+  border: 8px solid #fff;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 375px) {
+  .stopwatch .buttons-body {
+    gap: 5px;
+  }
+  .stopwatch .buttons-body button {
+    padding: .5rem .9375rem;
+  }
+}
+
+.stopwatch ul {
+  width: 100%;
+  max-width: 15.625rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--gray-110);
+  box-shadow: var(--shadow-4);
+  border-radius: 2rem;
+  padding: 1.5625rem 2rem;
+  transition: .3s ease;
+}
+
+.stopwatch ul li {
+  font-size: .875rem;
+  line-height: 150%;
+  color: var(--gray-800);
+  opacity: .75;
+
+  display: flex;
+  gap: 10px;
+}
+

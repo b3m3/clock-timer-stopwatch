@@ -15,7 +15,7 @@ import {
 import {
   tabButtons,
   tabContents,
-  timerFirst, 
+  timerFirst,
   timerNext, 
   swiperWrappers,
   timerNextCounter,
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // CLOCK
   setInterval(() => {
-    showCurrentTime('.arrow-hours', 'getHours', 12);
-    showCurrentTime('.arrow-minutes', 'getMinutes', 60);
-    showCurrentTime('.arrow-seconds', 'getSeconds', 60);
+    showCurrentTime('.clock-arrow-hours', 'getHours', 12);
+    showCurrentTime('.clock-arrow-minutes', 'getMinutes', 60);
+    showCurrentTime('.clock-arrow-seconds', 'getSeconds', 60);
   }, 1000);
 
   // TIMER

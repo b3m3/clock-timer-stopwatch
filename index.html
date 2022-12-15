@@ -30,15 +30,15 @@
     </nav>
 
     <!-- Clock -->
-    <section class="clock active">
+    <section class="clock">
       <div class="circle-wrapp clock__wrapp">
 
         <div class="circle-body clock__body">
-          <i class="arrow arrow-hours"></i>
-          <i class="arrow arrow-minutes"></i>
-          <i class="arrow arrow-seconds"></i>
+          <i class="arrow arrow-hours clock-arrow-hours"></i>
+          <i class="arrow arrow-minutes clock-arrow-minutes"></i>
+          <i class="arrow arrow-seconds clock-arrow-seconds"></i>
 
-          <img class="clock__mask" src="./img/clock-mask.webp" alt="time">
+          <img class="clock__mask" src="./img/clock-mask.webp" alt="clock-mask">
         </div>
 
       </div>
@@ -108,14 +108,29 @@
     </section>
 
     <!-- Stopwatch -->
-    <section class="stopwatch">
-      <div class="stopwatch__wrapp">
-        <div class="stopwatch__body">
-          <div class="stopwatch__circle">
-            Stopwatch
-          </div>
+    <section class="stopwatch active">
+      <div class="circle-wrapp">
+        <div class="circle-body">
+          <i class="arrow arrow-seconds stopwatch-arrrow"></i>
+          <img class="stopwatch__mask" src="./img/stopwatch-mask.webp" alt="stopwatch-mask">
         </div>
       </div>
+
+      <div class="buttons-wrapp">
+        <div class="buttons-body">
+          <button class="stopwatch-start active">Start</button>
+          <button class="stopwatch-stop">Stop</button>
+          <button class="stopwatch-reset">Reset</button>
+          <button class="stopwatch-circle">Circle</button>
+        </div>
+      </div>
+
+      <ul>
+        <!-- circle time created js -->
+        <li>
+          <span>05:11:0850</span> / <span>13:28</span>
+        </li>
+      </ul>
     </section>
   </div>
 
