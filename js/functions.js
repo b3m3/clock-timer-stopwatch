@@ -27,6 +27,17 @@ export const tabs = (buttons, contents, index, activeClass) => {
   addActiveClass(contents);
 };
 
+export const changeHeadTitle = button => {
+  document.title = button.textContent;
+};
+
+export const changeHeadLinkIcon = index => {
+  const icons = ['./icon/clock.svg', './icon/timer.svg', './icon/stopwatch.svg'];
+  const link = document.querySelector('link[rel="icon"]');
+
+  link.href = icons[index];
+};
+
 export const timerCounter = (id, hou, min, sec) => {
   sec.textContent--;
 

@@ -2,7 +2,9 @@
 import { 
   handleArrowTime,
   tabs,
+  changeHeadTitle,
   timerCounter,
+  changeHeadLinkIcon,
   addZeroToTime,
   addDoubleZeroToTime,
   getTotalSeconds,
@@ -50,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
   tabButtons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
       tabs(tabButtons, tabContents, i, 'active');
-      document.title = btn.textContent; // Change head title
+      changeHeadTitle(btn);
+      changeHeadLinkIcon(i);
     });
   });
 

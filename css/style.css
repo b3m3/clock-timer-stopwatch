@@ -125,6 +125,7 @@ section.active {
 }
 
 .buttons-body button {
+  user-select: none;
   padding: .625rem 1.25rem;
   background: var(--gray-50);
   background: #edf0f5;
@@ -496,23 +497,22 @@ section.active {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 4px;
+  gap: .625rem;
   width: 100%;
   max-width: 18.75rem;
   margin: 0 auto;
-  background: var(--gray-110);
-  box-shadow: var(--shadow-4);
-  border-radius: 2rem;
-  padding: 1.5625rem 2rem;
-  transition: .3s ease;
 }
 
 .stopwatch__list li {
+  padding: .625rem 1.25rem;
   display: flex;
   gap: .625rem;
   font-size: .875rem;
   line-height: 150%;
   color: var(--gray-800);
+  background: var(--gray-110);
+  box-shadow: var(--shadow-4);
+  border-radius: .75rem;
   opacity: .75;
 }
 
