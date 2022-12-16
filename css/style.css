@@ -458,15 +458,6 @@ section.active {
   border-radius: 50%;
 }
 
-@media screen and (max-width: 375px) {
-  .stopwatch .buttons-body {
-    gap: 5px;
-  }
-  .stopwatch .buttons-body button {
-    padding: .5rem .9375rem;
-  }
-}
-
 .stopwatch__mask {
   position: absolute;
   z-index: 3;
@@ -507,7 +498,7 @@ section.active {
   flex-direction: column;
   gap: 4px;
   width: 100%;
-  max-width: 15.625rem;
+  max-width: 18.75rem;
   margin: 0 auto;
   background: var(--gray-110);
   box-shadow: var(--shadow-4);
@@ -523,4 +514,18 @@ section.active {
   line-height: 150%;
   color: var(--gray-800);
   opacity: .75;
+}
+
+.stopwatch .buttons-body {
+  padding: .9375rem;
+  gap: .625rem;
+}
+
+@media screen and (max-width: 375px) {
+  .stopwatch .buttons-body {
+    gap: .3125rem;
+  }
+  .stopwatch .buttons-body button {
+    padding: .5rem .8125rem;
+  }
 }
