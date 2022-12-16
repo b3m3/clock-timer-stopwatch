@@ -25,6 +25,83 @@ button {cursor: pointer;border: none;background: none;}
   --shadow-4: -4px -4px 4px rgba(255, 255, 255, 0.5), 10px 15px 30px rgba(22, 25, 36, 0.1)
 }
 
+/* keyframes */
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-translate {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes blink {
+  0%{
+    color: var(--gray-800);
+  }
+  50%{
+    color: rgba(22, 26, 37, .2);
+  }
+  100% {
+    color: var(--gray-800);
+  }
+}
+
+@keyframes tremor {
+  0%{
+    transform: scale(1.5) rotate(25deg);
+  }
+  25% {
+    transform: scale(1.5) rotate(0);
+  }
+  50% {
+    transform: scale(1.5) rotate(-25deg);
+  }
+  75% {
+    transform: scale(1.5) rotate(0);
+  }
+  100% {
+    transform: scale(1.5) rotate(25deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes smooth {
+  from{
+    transform: translateX(-1.875rem);
+    opacity: 0;
+  }
+  to{
+    transform: translate(0);
+    opacity: .75;
+  }
+}
+
+/* settings */
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: .875rem;
@@ -45,6 +122,7 @@ section {
 
 section.active {
   display: flex;
+  animation: fade-translate 1s ease;
 }
 
 .circle-wrapp {
@@ -159,50 +237,6 @@ section.active {
   animation: blink 1s linear infinite;
 }
 
-/* keyframes */
-
-@keyframes blink {
-  0%{
-    color: var(--gray-800);
-  }
-  50%{
-    color: rgba(22, 26, 37, .2);
-  }
-  100% {
-    color: var(--gray-800);
-  }
-}
-
-@keyframes tremor {
-  0%{
-    transform: scale(1.5) rotate(25deg);
-  }
-  25% {
-    transform: scale(1.5) rotate(0);
-  }
-  50% {
-    transform: scale(1.5) rotate(-25deg);
-  }
-  75% {
-    transform: scale(1.5) rotate(0);
-  }
-  100% {
-    transform: scale(1.5) rotate(25deg);
-  }
-}
-
-@keyframes scale {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 /* Navbar */
 
 .navbar {
@@ -301,6 +335,7 @@ section.active {
 
 .timer-counter.active {
   display: flex;
+  animation: fade .6s;
 }
 
 .timer__first {
@@ -514,6 +549,7 @@ section.active {
   box-shadow: var(--shadow-4);
   border-radius: .75rem;
   opacity: .75;
+  animation: smooth .4s linear;
 }
 
 .stopwatch .buttons-body {
