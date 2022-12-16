@@ -1,47 +1,14 @@
 // Functions
-import { 
-  handleArrowTime,
-  tabs,
-  changeHeadTitle,
-  timerCounter,
-  changeHeadLinkIcon,
-  addZeroToTime,
-  addDoubleZeroToTime,
-  getTotalSeconds,
-  playSignal,
-  stopSignal,
-  createTimeElements,
-  getTimerEndTime,
-} from './functions.js';
+import { handleArrowTime, tabs, changeHeadTitle, timerCounter, changeHeadLinkIcon,
+  addZeroToTime, addDoubleZeroToTime, getTotalSeconds, playSignal, stopSignal,
+  createTimeElements, getTimerEndTime, createStopwatchSavedTimeItem } from './functions.js';
 
 // Constans
-import {
-  tabButtons,
-  tabContents,
-  timerFirst,
-  timerNext, 
-  swiperWrappers,
-  timerNextCounter,
-  timerCancelBtn,
-  timerStartBtn,
-  timerPauseBtn,
-  timerHours,
-  timerMinutes,
-  timerSeconds,
-  timerEndTime,
-  circleProgress,
-  bell,
-  signal,
-  stopwatchArrrow,
-  stopwatchCounterMinutes,
-  stopwatchCounterSeconds,
-  stopwatchCounterMilliseconds,
-  stopwatchStartBtn,
-  stopwatchStopBtn,
-  stopwatchResetBtn,
-  stopwatchCircleBtn,
-  stopwatchCircleList
-} from './constans.js';
+import { tabButtons, tabContents, timerFirst, timerNext,  swiperWrappers, timerNextCounter,
+  timerCancelBtn, timerStartBtn, timerPauseBtn, timerHours, timerMinutes, timerSeconds,
+  timerEndTime, circleProgress, bell, signal, stopwatchArrrow, stopwatchCounterMinutes, 
+  stopwatchCounterSeconds, stopwatchCounterMilliseconds, stopwatchStartBtn, stopwatchStopBtn,
+  stopwatchResetBtn, stopwatchCircleBtn, stopwatchCircleList } from './constans.js';
 
 import { callback, options } from './observer.js';
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
@@ -77,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver(callback);
   observer.observe(timerFirst, options);
 
-  const intervalBody = () => {
+  const timerIntervalBody = () => {
     totalPrecent += percentPerSecond;
     timerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
     circleProgress.style.strokeDasharray = `${totalPrecent}% 284%`;
@@ -90,26 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }; // function for a setIntervals
 
-  const handleClassesStartBtn = () => {
-    timerCancelBtn.classList.add('active');
-    timerNext.classList.add('active');
-    timerPauseBtn.classList.add('active');
-    timerStartBtn.classList.add('hidden');
-    timerPauseBtn.classList.remove('hidden');
-    timerFirst.classList.remove('active');
-  }; // function for a timerStartBtn
-
-  const handleClassesCancelBtn = () => {
-    timerFirst.classList.add('active');
-    timerPauseBtn.classList.add('hidden');
-    timerStartBtn.classList.remove('hidden');
-    timerNext.classList.remove('active');
-    timerCancelBtn.classList.remove('active');
-    timerPauseBtn.classList.remove('pause');
-    bell.classList.remove('active');
-    timerNext.classList.remove('scale');
-  }; // function for a timerCancelBtn
-
   timerPauseBtn.addEventListener('click', () => {
     pause = !pause
 
@@ -117,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(timerInterval);
       timerPauseBtn.classList.add('pause');
     } else {
-      timerInterval = setInterval(intervalBody, 1000);
+      timerInterval = setInterval(timerIntervalBody, 1000);
       timerPauseBtn.classList.remove('pause');
 
       getTimerEndTime(
@@ -128,7 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }); // event pause button
   
   timerStartBtn.addEventListener('click', () => {
-    handleClassesStartBtn();
+    timerCancelBtn.classList.add('active');
+    timerNext.classList.add('active');
+    timerPauseBtn.classList.add('active');
+    timerStartBtn.classList.add('hidden');
+    timerPauseBtn.classList.remove('hidden');
+    timerFirst.classList.remove('active');
 
     let customIndex = -1;
 
@@ -147,11 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
     percentPerSecond = 284 / getTotalSeconds(timerHours, timerMinutes, timerSeconds);
     totalPrecent = 0;
     
-    timerInterval = setInterval(intervalBody, 1000);
+    timerInterval = setInterval(timerIntervalBody, 1000);
   }); // event start button
   
   timerCancelBtn.addEventListener('click', () => {
-    handleClassesCancelBtn();
+    timerFirst.classList.add('active');
+    timerPauseBtn.classList.add('hidden');
+    timerStartBtn.classList.remove('hidden');
+    timerNext.classList.remove('active');
+    timerCancelBtn.classList.remove('active');
+    timerPauseBtn.classList.remove('pause');
+    bell.classList.remove('active');
+    timerNext.classList.remove('scale');
+
     stopSignal(signal);
     clearInterval(timerInterval);
     circleProgress.style.strokeDasharray = '0% 284%';
@@ -189,38 +149,17 @@ document.addEventListener('DOMContentLoaded', () => {
     stopwatchCounterMinutes.textContent = addZeroToTime(+stopwatchCounterMinutes.textContent);
   };
 
-  const createCircleTimeItem = (wrapp) => {
-    const li = document.createElement('li');
-
-    const currentHours = addZeroToTime(new Date().getHours());
-    const currentMinutes = addZeroToTime(new Date().getMinutes());
-    const currentSeconds = addZeroToTime(new Date().getSeconds());
-
-    const m = stopwatchCounterMinutes.textContent;
-    const s = stopwatchCounterSeconds.textContent;
-    const ms = stopwatchCounterMilliseconds.textContent;
-
-    li.innerHTML = `
-      <span>${m}m : ${s}s : ${ms}ms</span> / 
-      <span>${currentHours} : ${currentMinutes} : ${currentSeconds}</span>
-    `;
-    wrapp.append(li);
-  };
-
   stopwatchStartBtn.addEventListener('click', () => {
     stopwatchStartBtn.classList.remove('active');
     stopwatchStopBtn.classList.add('active');
     stopwatchResetBtn.classList.add('active');
     stopwatchCircleBtn.classList.add('active');
+
     startTime = new Date().getTime();
+
     stopwatchInterval = setInterval(() => {
       handleArrowStopwatch();
-      handleStartStopwatchCounter(
-        stopwatchCounterStep, 
-        stopwatchCounterMinutes, 
-        stopwatchCounterSeconds, 
-        stopwatchCounterMilliseconds
-      );
+      handleStartStopwatchCounter();
     });
   }); // event start button
 
@@ -251,6 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }); // event reset button
 
   stopwatchCircleBtn.addEventListener('click', () => {
-    createCircleTimeItem(stopwatchCircleList, startTime);
+    createStopwatchSavedTimeItem(
+      stopwatchCircleList,
+      stopwatchCounterMinutes,
+      stopwatchCounterSeconds,
+      stopwatchCounterMilliseconds
+    );
   }); // event circle button
 });

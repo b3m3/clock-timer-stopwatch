@@ -104,3 +104,17 @@ export const getTimerEndTime = (time, selector) => {
 
   selector.textContent = addZeroToTime(endH) + " : " + addZeroToTime(endM);
 };
+
+export const createStopwatchSavedTimeItem = (wrapp, min, sec, msec) => {
+  const li = document.createElement('li');
+
+  const currentHours = addZeroToTime(new Date().getHours());
+  const currentMinutes = addZeroToTime(new Date().getMinutes());
+  const currentSeconds = addZeroToTime(new Date().getSeconds());
+
+  li.innerHTML = `
+    <span>${min.textContent}m : ${sec.textContent}s : ${msec.textContent}ms</span> / 
+    <span>${currentHours} : ${currentMinutes} : ${currentSeconds}</span>
+  `;
+  wrapp.append(li);
+};
