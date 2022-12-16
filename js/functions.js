@@ -1,4 +1,4 @@
-export const showCurrentTime = (selector, getTime, maxTime) => {
+export const handleArrowTime = (selector, getTime, maxTime) => {
   const arrow = document.querySelector(selector);
   const currentTime = eval(`new Date().${getTime}()`);
   const deg = 360 / maxTime * currentTime;
@@ -51,6 +51,10 @@ export const timerCounter = (id, hou, min, sec) => {
 
 export const addZeroToTime = t => {
   return t < 10 ? '0' + t : t
+};
+
+export const addDoubleZeroToTime = t => {
+  return t < 10 ? '00' + t : t < 100 ? '0' + t : t;
 };
 
 export const getTotalSeconds = (h, m, s) => {

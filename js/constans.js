@@ -27,9 +27,9 @@ export const signal = document.querySelector('.signal');
 // Stopwatch
 export const stopwatchArrrow = document.querySelector('.stopwatch-arrrow');
 
-export const stopwatchCounterHours = document.querySelector('.stopwatch__hours');
 export const stopwatchCounterMinutes = document.querySelector('.stopwatch__minutes');
 export const stopwatchCounterSeconds = document.querySelector('.stopwatch__seconds');
+export const stopwatchCounterMilliseconds = document.querySelector('.stopwatch__milliseconds');
 
 export const stopwatchStartBtn = document.querySelector('.stopwatch-start');
 export const stopwatchStopBtn = document.querySelector('.stopwatch-stop');
