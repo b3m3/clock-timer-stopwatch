@@ -1,4 +1,4 @@
-export const handleArrowTime = (selector, getTime, maxTime) => {
+export const handleArrowClock = (selector, getTime, maxTime) => {
   const arrow = document.querySelector(selector);
   const currentTime = eval(`new Date().${getTime}()`);
   const deg = 360 / maxTime * currentTime;

@@ -1,5 +1,5 @@
 // Functions
-import { handleArrowTime, tabs, changeHeadTitle, timerCounter, changeHeadLinkIcon,
+import { handleArrowClock, tabs, changeHeadTitle, timerCounter, changeHeadLinkIcon,
   addZeroToTime, addDoubleZeroToTime, getTotalSeconds, playSignal, stopSignal,
   createTimeElements, getTimerEndTime, createStopwatchSavedTimeItem } from './functions.js';
 
@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // CLOCK
   setInterval(() => {
-    handleArrowTime('.clock-arrow-hours', 'getHours', 12);
-    handleArrowTime('.clock-arrow-minutes', 'getMinutes', 60);
-    handleArrowTime('.clock-arrow-seconds', 'getSeconds', 60);
+    handleArrowClock('.clock-arrow-hours', 'getHours', 12);
+    handleArrowClock('.clock-arrow-minutes', 'getMinutes', 60);
+    handleArrowClock('.clock-arrow-seconds', 'getSeconds', 60);
   }, 1000);
 
   // TIMER
@@ -49,10 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     timerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
     circleProgress.style.strokeDasharray = `${totalPrecent}% 284%`;
     
-    if (totalPrecent === 284) {
+    if (totalPrecent >= 284) {
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       playSignal(signal);
+      navigator.vibrate(200);
       timerNext.classList.add('scale');
     }
   }; // function for a setIntervals
