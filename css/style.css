@@ -188,15 +188,15 @@ section.active {
   z-index: 3;
   transform: rotate(0deg);
   border-radius: 5px;
-  background: var(--gradient);
   box-shadow: 10px 4px 10px rgba(22, 25, 36, 0.28);
 }
 
 .arrow-hours {
-  width: 7px;
+  width: 8px;
   height: 20%;
   top: calc(50% - 20%);
-  transform-origin: center calc(100% - calc(7px / 2));
+  transform-origin: center calc(100% - calc(8px / 2));
+  background: var(--gradient);
 }
 
 .arrow-minutes {
@@ -204,6 +204,7 @@ section.active {
   height: 27%;
   top: calc(50% - 27%);
   transform-origin: center calc(100% - calc(4px / 2));
+  background: linear-gradient(135deg, #33F0B0 20.63%, #0D8AFC 120.14%);
 }
 
 .arrow-seconds {
