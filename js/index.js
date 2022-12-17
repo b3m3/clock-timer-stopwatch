@@ -1,7 +1,7 @@
 // Functions
 import { handleArrowClock, tabs, changeHeadTitle, timerCounter, changeHeadLinkIcon,
   addZeroToTime, addDoubleZeroToTime, getTotalSeconds, playSignal, stopSignal,
-  createTimeElements, getTimerEndTime, createStopwatchSavedTimeItem, vibrate } from './functions.js';
+  createTimeElements, getTimerEndTime, createStopwatchSavedTimeItem } from './functions.js';
 
 // Constans
 import { tabButtons, tabContents, timerFirst, timerNext,  swiperWrappers, timerNextCounter,
@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
       bell.classList.add('active');
       timerNext.classList.add('scale');
       playSignal(signal);
-      vibrate();
     }
   }; // function for a setIntervals
 

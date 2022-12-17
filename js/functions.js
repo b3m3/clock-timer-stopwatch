@@ -77,8 +77,6 @@ export const getTotalSeconds = (h, m, s) => {
 };
 
 export const playSignal = audio => {
-  audio.muted = false
-  audio.autoplay = true;
   audio.play();
 };
 
@@ -120,19 +118,3 @@ export const createStopwatchSavedTimeItem = (wrapp, min, sec, msec) => {
   `;
   wrapp.append(li);
 };
-
-export const vibrate = () => {
-  if (!window) {
-      return;
-  }
-
-  if (!window.navigator) {
-      return;
-  }
-
-  if (!window.navigator.vibrate) {
-      return;
-  }
-
-  window.navigator.vibrate([200, 100, 200]);
-}
