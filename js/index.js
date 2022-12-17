@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const timerIntervalBody = () => {
     totalPrecent += percentPerSecond;
-    timerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
     circleProgress.style.strokeDasharray = `${totalPrecent}% 284%`;
+    timerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
     
     if (totalPrecent >= 284) {
       timerPauseBtn.classList.remove('active');

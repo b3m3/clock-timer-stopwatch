@@ -77,6 +77,8 @@ export const getTotalSeconds = (h, m, s) => {
 };
 
 export const playSignal = audio => {
+  audio.volume = 1;
+  audio.type = 'audio/mpeg';
   audio.play();
 };
 
