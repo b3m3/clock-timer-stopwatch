@@ -1,7 +1,7 @@
 // Functions
 import { handleArrowClock, tabs, changeHeadTitle, timerCounter, changeHeadLinkIcon,
   addZeroToTime, addDoubleZeroToTime, getTotalSeconds, playSignal, stopSignal,
-  createTimeElements, getTimerEndTime, createStopwatchSavedTimeItem } from './functions.js';
+  createTimeElements, getTimerEndTime, createStopwatchSavedTimeItem, vibrate } from './functions.js';
 
 // Constans
 import { tabButtons, tabContents, timerFirst, timerNext,  swiperWrappers, timerNextCounter,
@@ -15,7 +15,7 @@ import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.brow
 
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
-  
+
   // MAIN TABS
   tabButtons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bell.classList.add('active');
       timerNext.classList.add('scale');
       playSignal(signal);
-      window.navigator.vibrate(200);
+      vibrate();
     }
   }; // function for a setIntervals
 
