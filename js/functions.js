@@ -38,7 +38,7 @@ export const changeHeadLinkIcon = index => {
   link.href = icons[index];
 };
 
-export const timerCounter = (id, hou, min, sec) => {
+export const handleStartTimerCounter = (id, hou, min, sec) => {
   sec.textContent--;
 
   if (+sec.textContent >= 0) {
@@ -77,8 +77,6 @@ export const getTotalSeconds = (h, m, s) => {
 };
 
 export const playSignal = audio => {
-  audio.volume = 1;
-  audio.type = 'audio/mpeg';
   audio.play();
 };
 

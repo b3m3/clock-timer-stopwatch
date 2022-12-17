@@ -1,5 +1,5 @@
 // Functions
-import { handleArrowClock, tabs, changeHeadTitle, timerCounter, changeHeadLinkIcon,
+import { handleArrowClock, tabs, changeHeadTitle, handleStartTimerCounter, changeHeadLinkIcon,
   addZeroToTime, addDoubleZeroToTime, getTotalSeconds, playSignal, stopSignal,
   createTimeElements, getTimerEndTime, createStopwatchSavedTimeItem } from './functions.js';
 
@@ -48,12 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const timerIntervalBody = () => {
     totalPrecent += percentPerSecond;
     circleProgress.style.strokeDasharray = `${totalPrecent}% 284%`;
-    timerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
+
+    handleStartTimerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
     
     if (totalPrecent >= 284) {
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       timerNext.classList.add('scale');
+
       playSignal(signal);
     }
   }; // function for a setIntervals
@@ -125,11 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let stopwatchArrowStep = 0;
   let stopwatchCounterStep = 1;
 
-  const handleArrowStopwatch = () => {
-    stopwatchArrowStep += 360 / (60000 / 4);
-    stopwatchArrrow.style.transform = `rotate(${stopwatchArrowStep}deg)`;
-  };
-
   const handleStartStopwatchCounter = () => {
     stopwatchCounterStep += 1 * 4;
 
@@ -159,7 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
     startTime = new Date().getTime();
 
     stopwatchInterval = setInterval(() => {
-      handleArrowStopwatch();
+      stopwatchArrowStep += 360 / (60000 / 4);
+      stopwatchArrrow.style.transform = `rotate(${stopwatchArrowStep}deg)`;
+
       handleStartStopwatchCounter();
     });
   }); // event start button
