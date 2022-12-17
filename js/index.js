@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (totalPrecent >= 284) {
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
-      playSignal(signal);
-      navigator.vibrate(200);
       timerNext.classList.add('scale');
+      playSignal(signal);
+      window.navigator.vibrate(200);
     }
   }; // function for a setIntervals
 

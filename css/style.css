@@ -39,10 +39,12 @@ button {cursor: pointer;border: none;background: none;}
 @keyframes fade-translate {
   from {
     opacity: 0;
+    -webkit-transform: translateY(1.25rem);
     transform: translateY(1.25rem);
   }
   to {
     opacity: 1;
+    -webkit-transform: translateY(0px);
     transform: translateY(0px);
   }
 }
@@ -61,40 +63,50 @@ button {cursor: pointer;border: none;background: none;}
 
 @keyframes tremor {
   0%{
+    -webkit-transform: scale(1.5) rotate(25deg);
     transform: scale(1.5) rotate(25deg);
   }
   25% {
+    -webkit-transform: scale(1.5) rotate(0);
     transform: scale(1.5) rotate(0);
   }
   50% {
+    -webkit-transform: scale(1.5) rotate(-25deg);
     transform: scale(1.5) rotate(-25deg);
   }
   75% {
+    -webkit-transform: scale(1.5) rotate(0);
     transform: scale(1.5) rotate(0);
   }
   100% {
+    -webkit-transform: scale(1.5) rotate(25deg);
     transform: scale(1.5) rotate(25deg);
   }
 }
 
 @keyframes scale {
   0% {
+    -webkit-transform: scale(1);
     transform: scale(1);
   }
   50% {
+    -webkit-transform: scale(1.05);
     transform: scale(1.05);
   }
   100% {
+    -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
 
 @keyframes smooth {
   from{
+    -webkit-transform: translateX(-1.875rem);
     transform: translateX(-1.875rem);
     opacity: 0;
   }
   to{
+    -webkit-transform: translate(0);
     transform: translate(0);
     opacity: .75;
   }
@@ -122,6 +134,7 @@ section {
 
 section.active {
   display: flex;
+  -webkit-animation: fade-translate 1s ease;
   animation: fade-translate 1s ease;
 }
 
@@ -234,6 +247,7 @@ section.active {
 
 .buttons-body button.pause {
   box-shadow: var(--shadow-i-4);
+  -webkit-animation: blink 1s linear infinite;
   animation: blink 1s linear infinite;
 }
 
@@ -335,6 +349,7 @@ section.active {
 
 .timer-counter.active {
   display: flex;
+  -webkit-animation: fade .6s;
   animation: fade .6s;
 }
 
@@ -387,6 +402,7 @@ section.active {
 }
 
 .timer__next.scale {
+  -webkit-animation: scale .8s linear infinite;
   animation: scale .8s linear infinite;
 }
 
@@ -456,6 +472,7 @@ section.active {
 }
 
 .timer__end img.active {
+  -webkit-animation: tremor .25s linear infinite;
   animation: tremor .25s linear infinite;
 }
 
@@ -549,6 +566,7 @@ section.active {
   box-shadow: var(--shadow-4);
   border-radius: .75rem;
   opacity: .75;
+  -webkit-animation: smooth .4s linear;
   animation: smooth .4s linear;
 }
 
