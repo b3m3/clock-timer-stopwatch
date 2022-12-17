@@ -38,6 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
   let percentPerSecond = 0;
   let totalPrecent = 0;
 
+  /* ************************************************************************ */
+  const AudioContext = window.AudioContext;
+  const audioCtx = new AudioContext();
+
+  const unlockAudioContext = audioCtx => {
+    if (audioCtx.state !== 'suspended') return;
+    const b = document.body;
+    const events = ['touchstart','touchend', 'mousedown','keydown'];
+    events.forEach(e => b.addEventListener(e, unlock, false));
+    function unlock() { audioCtx.resume().then(clean); }
+    function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
+  }
+
+  unlockAudioContext(audioCtx);
+  /* ************************************************************************ */
+
   createTimeElements(swiperWrappers, addZeroToTime); // Create time elements for counter
   const counterElements  = document.querySelectorAll('.tst'); // Get time elements 
   const swiper = new Swiper('.swiper', {direction: 'vertical'}); // Counter Swiper
