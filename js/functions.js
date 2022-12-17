@@ -118,3 +118,19 @@ export const createStopwatchSavedTimeItem = (wrapp, min, sec, msec) => {
   `;
   wrapp.append(li);
 };
+
+export const vibrate = () => {
+  if (!window) {
+      return;
+  }
+
+  if (!window.navigator) {
+      return;
+  }
+
+  if (!window.navigator.vibrate) {
+      return;
+  }
+
+  window.navigator.vibrate([200, 100, 200]);
+}
