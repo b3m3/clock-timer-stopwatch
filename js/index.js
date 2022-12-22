@@ -18,8 +18,6 @@ import { ios } from './ios.js';
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
-  ios();
-
   // MAIN TABS
   tabButtons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
@@ -55,12 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     handleStartTimerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
 
-    if (Math.ceil(totalPrecent) >= 284) {
+    ios(totalPrecent, signal);
+
+    if (Math.ceil(totalPrecent) >= 284) { 
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       timerNext.classList.add('scale');
       // playSignal(signal);
-      signal.play();
+      // signal.play();
     }
   }; // function for a setIntervals
 
