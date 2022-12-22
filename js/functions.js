@@ -75,11 +75,7 @@ export const getTotalSeconds = (h, m, s) => {
 };
 
 export const playSignal = audio => {
-  if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-    audio.click();
-  } else {
-    audio.play();
-  }
+  audio.play();
 };
 
 export const stopSignal = audio => {

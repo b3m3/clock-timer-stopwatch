@@ -57,8 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
       timerNext.classList.add('scale');
       playSignal(signal);
     }
-
-    signal.addEventListener('click', (e) => e ? signal.play() : null);
   }; // function for a setIntervals
 
   timerPauseBtn.addEventListener('click', () => {
