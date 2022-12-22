@@ -3,7 +3,7 @@ export const handleArrowClock = (selector, getTime, maxTime) => {
   const currentTime = eval(`new Date().${getTime}()`);
   const deg = 360 / maxTime * 
     (maxTime === 12 
-      ? `${currentTime}.${addZeroToTime(new Date().getMinutes())}` 
+      ? `${currentTime}.${addZeroToTime(Math.floor(100 / 60 * new Date().getMinutes()))}` 
       : currentTime);
   
   arrow.style.transition = deg > 360 || deg < 1 ? 'unset' : '.3s ease';
@@ -75,6 +75,8 @@ export const getTotalSeconds = (h, m, s) => {
 };
 
 export const playSignal = audio => {
+  audio.play();
+
   if ('AudioContext' in window || 'webkitAudioContext' in window) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     const context = new AudioContext();
@@ -83,11 +85,12 @@ export const playSignal = audio => {
   
     audio.play();
   }
-  
-  audio.play();
 };
 
 export const stopSignal = audio => {
+  audio.pause();
+  audio.currentTime = 0;
+
   if ('AudioContext' in window || 'webkitAudioContext' in window) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     const context = new AudioContext();
@@ -97,9 +100,6 @@ export const stopSignal = audio => {
     audio.pause();
     audio.currentTime = 0;
   }
-  
-  audio.pause();
-  audio.currentTime = 0;
 };
 
 export const createTimeElements = (wrappers, func) => {
