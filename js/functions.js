@@ -75,10 +75,29 @@ export const getTotalSeconds = (h, m, s) => {
 };
 
 export const playSignal = audio => {
+  if ('AudioContext' in window || 'webkitAudioContext' in window) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const context = new AudioContext();
+    const gainNode = context.createGain();
+    gainNode.gain.value = 1;
+  
+    audio.play();
+  }
+  
   audio.play();
 };
 
 export const stopSignal = audio => {
+  if ('AudioContext' in window || 'webkitAudioContext' in window) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const context = new AudioContext();
+    const gainNode = context.createGain();
+    gainNode.gain.value = 1;
+  
+    audio.pause();
+    audio.currentTime = 0;
+  }
+  
   audio.pause();
   audio.currentTime = 0;
 };
