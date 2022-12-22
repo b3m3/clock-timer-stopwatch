@@ -1,14 +1,12 @@
 export const handleArrowClock = (selector, getTime, maxTime) => {
   const arrow = document.querySelector(selector);
   const currentTime = eval(`new Date().${getTime}()`);
-  const deg = 360 / maxTime * currentTime;
-
-  if (deg > 360 || deg < 1) {
-    arrow.style.transition = 'unset';
-  } else {
-    arrow.style.transition = '.3s ease';
-  }
+  const deg = 360 / maxTime * 
+    (maxTime === 12 
+      ? `${currentTime}.${addZeroToTime(new Date().getMinutes())}` 
+      : currentTime);
   
+  arrow.style.transition = deg > 360 || deg < 1 ? 'unset' : '.3s ease';
   arrow.style.transform = `rotate(${deg}deg)`;
 };
 
