@@ -16,6 +16,12 @@ import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.brow
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
+  const p = document.querySelector('#play');
+  p.addEventListener('click', () => {
+    console.log(1);
+    signal.play();
+  })
+
   // MAIN TABS
   tabButtons.forEach((btn, i) => {
     btn.addEventListener('click', () => {

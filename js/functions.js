@@ -76,30 +76,11 @@ export const getTotalSeconds = (h, m, s) => {
 
 export const playSignal = audio => {
   audio.play();
-
-  if ('AudioContext' in window || 'webkitAudioContext' in window) {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const context = new AudioContext();
-    const gainNode = context.createGain();
-    gainNode.gain.value = 1;
-  
-    audio.play();
-  }
 };
 
 export const stopSignal = audio => {
   audio.pause();
   audio.currentTime = 0;
-
-  if ('AudioContext' in window || 'webkitAudioContext' in window) {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const context = new AudioContext();
-    const gainNode = context.createGain();
-    gainNode.gain.value = 1;
-  
-    audio.pause();
-    audio.currentTime = 0;
-  }
 };
 
 export const createTimeElements = (wrappers, func) => {
