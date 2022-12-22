@@ -13,14 +13,12 @@ import { tabButtons, tabContents, timerFirst, timerNext,  swiperWrappers, timerN
 import { callback, options } from './observer.js';
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
 
-import { ios, fixAudio } from './ios.js';
+import {  } from './ios.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
-  document.addEventListener('touchend', () => window.AudioContext.resume());
 
-  fixAudio();
 
   // MAIN TABS
   tabButtons.forEach((btn, i) => {
@@ -57,14 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     handleStartTimerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
 
-    ios(totalPrecent, signal);
-
     if (Math.ceil(totalPrecent) >= 284) { 
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       timerNext.classList.add('scale');
-      // playSignal(signal);
-      // signal.play();
+      playSignal(signal);
     }
   }; // function for a setIntervals
 

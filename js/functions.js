@@ -75,7 +75,7 @@ export const getTotalSeconds = (h, m, s) => {
 };
 
 export const playSignal = audio => {
-  audio.play();
+  return audio.play();
 };
 
 export const stopSignal = audio => {
