@@ -51,15 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     handleStartTimerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
 
-    signal.addEventListener('click', (e) => e ? signal.play() : null);
-
     if (Math.ceil(totalPrecent) >= 284) {
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       timerNext.classList.add('scale');
       playSignal(signal);
-      console.log(navigator.userAgent);
     }
+
+    signal.addEventListener('click', (e) => e ? signal.play() : null);
   }; // function for a setIntervals
 
   timerPauseBtn.addEventListener('click', () => {
