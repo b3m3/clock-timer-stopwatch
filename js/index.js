@@ -50,12 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
     circleProgress.style.strokeDasharray = `${totalPrecent}% 284%`;
 
     handleStartTimerCounter(timerInterval, timerHours, timerMinutes, timerSeconds);
-    
-    if (totalPrecent >= 284) {
+
+    if (Math.ceil(totalPrecent) >= 284) {
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       timerNext.classList.add('scale');
-
       playSignal(signal);
     }
   }; // function for a setIntervals
