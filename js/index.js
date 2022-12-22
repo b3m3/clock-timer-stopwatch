@@ -13,8 +13,12 @@ import { tabButtons, tabContents, timerFirst, timerNext,  swiperWrappers, timerN
 import { callback, options } from './observer.js';
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
 
+import { ios } from './ios.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
+
+  ios();
 
   // MAIN TABS
   tabButtons.forEach((btn, i) => {
