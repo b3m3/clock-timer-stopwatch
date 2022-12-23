@@ -598,3 +598,7 @@ section.active {
     padding: .5rem .8125rem;
   }
 }
+
+.signal {
+  margin: 40px auto 0 auto;
+}

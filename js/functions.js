@@ -75,14 +75,15 @@ export const getTotalSeconds = (h, m, s) => {
 };
 
 export const playSignal = audio => {
-  audio.pause();
   audio.currentTime = 0;
-  return audio.play();
+  audio.muted = false;
+  audio.play();
 };
 
 export const stopSignal = audio => {
-  audio.pause();
   audio.currentTime = 0;
+  audio.muted = true;
+  audio.pause();
 };
 
 export const createTimeElements = (wrappers, func) => {
