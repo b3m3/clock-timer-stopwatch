@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     timerPauseBtn.classList.remove('hidden');
     timerFirst.classList.remove('active');
 
-    signal.autoplay = false;
     signal.muted = false;
 
     let customIndex = -1;
