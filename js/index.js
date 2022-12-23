@@ -38,6 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let percentPerSecond = 0;
   let totalPrecent = 0;
 
+  const play = document.getElementById('play');
+  play.addEventListener('click', () => {
+    signal.play();
+  });
+
   createTimeElements(swiperWrappers, addZeroToTime); // Create time elements for counter
   const counterElements  = document.querySelectorAll('.tst'); // Get time elements 
   const swiper = new Swiper('.swiper', {direction: 'vertical'}); // Counter Swiper
