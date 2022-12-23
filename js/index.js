@@ -45,10 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new MutationObserver(callback);
   observer.observe(timerFirst, options);
 
-  /* ********************************************************** */
-  
-  /* ********************************************************** */
-
   const timerIntervalBody = () => {
     totalPrecent += percentPerSecond;
     circleProgress.style.strokeDasharray = `${totalPrecent}% 284%`;
@@ -87,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
     timerStartBtn.classList.add('hidden');
     timerPauseBtn.classList.remove('hidden');
     timerFirst.classList.remove('active');
+
+    signal.muted = false;
 
     let customIndex = -1;
 
