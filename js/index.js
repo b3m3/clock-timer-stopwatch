@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     timerFirst.classList.remove('active');
 
     signal.muted = false;
-
     let customIndex = -1;
 
     counterElements.forEach(el => {
