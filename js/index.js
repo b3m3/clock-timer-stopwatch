@@ -38,17 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
   let percentPerSecond = 0;
   let totalPrecent = 0;
 
-  const play = document.getElementById('play');
-  play.addEventListener('click', () => {
-    signal.play();
-  });
-
   createTimeElements(swiperWrappers, addZeroToTime); // Create time elements for counter
   const counterElements  = document.querySelectorAll('.tst'); // Get time elements 
   const swiper = new Swiper('.swiper', {direction: 'vertical'}); // Counter Swiper
 
   const observer = new MutationObserver(callback);
   observer.observe(timerFirst, options);
+
+  /* ********************************************************** */
+  const a = new Audio('./audio/signal.mp3');
+  a.muted = true;
+  a.controls = true;
+
+  document.body.prepend(a);
+  /* ********************************************************** */
 
   const timerIntervalBody = () => {
     totalPrecent += percentPerSecond;
@@ -60,7 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       timerNext.classList.add('scale');
-      playSignal(signal, play);
+      // playSignal(signal);
+      a.muted = false;
+      a.autoplay = true;
+      a.play();
     }
   }; // function for a setIntervals
 
@@ -119,7 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
     bell.classList.remove('active');
     timerNext.classList.remove('scale');
 
-    stopSignal(signal);
+    // stopSignal(signal);
+    a.pause();
+    a.muted = true;
+    a.currentTime = 0;
+
     clearInterval(timerInterval);
     circleProgress.style.strokeDasharray = '0% 284%';
     pause = false;
