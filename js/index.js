@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       timerNext.classList.add('scale');
-      playSignal(signal);
+      playSignal(signal, play);
     }
   }; // function for a setIntervals
 
