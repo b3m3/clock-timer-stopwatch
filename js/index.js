@@ -46,11 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   observer.observe(timerFirst, options);
 
   /* ********************************************************** */
-  const a = new Audio('./audio/signal.mp3');
-  a.muted = true;
-  a.controls = true;
-
-  document.body.prepend(a);
+  
   /* ********************************************************** */
 
   const timerIntervalBody = () => {
@@ -63,10 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       timerPauseBtn.classList.remove('active');
       bell.classList.add('active');
       timerNext.classList.add('scale');
-      // playSignal(signal);
-      a.muted = false;
-      a.autoplay = true;
-      a.play();
+      playSignal(signal);
     }
   }; // function for a setIntervals
 
@@ -125,11 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bell.classList.remove('active');
     timerNext.classList.remove('scale');
 
-    // stopSignal(signal);
-    a.pause();
-    a.muted = true;
-    a.currentTime = 0;
-
+    stopSignal(signal);
     clearInterval(timerInterval);
     circleProgress.style.strokeDasharray = '0% 284%';
     pause = false;
