@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?li59gb');
+  src:  url('../fonts/icomoon.eot?li59gb#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?li59gb') format('truetype'),
+    url('../fonts/icomoon.woff?li59gb') format('woff'),
+    url('../fonts/icomoon.svg?li59gb#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-back:before {
+  content: "\e900";
+  font-weight: bold;
+  font-size: 34px;
+}
+.icon-time:before {
+  content: "\e901";
+  font-weight: bold;
+  font-size: 30px;
+}
+.icon-reset:before {
+  content: "\e902";
+  font-weight: bold;
+  font-size: 36px;
+}
+.icon-play:before {
+  content: "\e903";
+  transform: translateX(10px);
+  font-weight: bold;
+  margin-right: -7px;
+  font-size: 34px;
+}
+.icon-paused:before {
+  content: "\e904";
+  font-weight: bold;
+  font-size: 34px;
+}
