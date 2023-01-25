@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     timerPauseBtn.classList.add('active');
     timerStartBtn.classList.add('hidden');
     timerPauseBtn.classList.remove('hidden');
+    timerCancelBtn.classList.remove('hidden');
     timerFirst.classList.remove('active');
 
     signal.muted = false;
@@ -111,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     timerStartBtn.classList.remove('hidden');
     timerNext.classList.remove('active');
     timerCancelBtn.classList.remove('active');
+    timerCancelBtn.classList.add('hidden');
     timerPauseBtn.classList.remove('pause');
     bell.classList.remove('active');
     timerNext.classList.remove('scale');
