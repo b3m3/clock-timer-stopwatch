@@ -155,7 +155,7 @@ section.active {
 
 .circle-wrapp {
   position: relative;
-  width: calc(300px + calc(800 - 300) * ((100vw - 320px) / (2560 - 320)));
+  width: calc(300px + calc(600 - 300) * ((100vw - 320px) / (2560 - 320)));
 }
 
 .circle-wrapp::before {
