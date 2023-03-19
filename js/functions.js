@@ -30,7 +30,7 @@ export const changeHeadTitle = button => {
 };
 
 export const changeHeadLinkIcon = index => {
-  const icons = ['./icon/clock.svg', './icon/timer.svg', './icon/stopwatch.svg'];
+  const icons = ['./icon/clock.svg', './icon/timer.svg', './icon/stopwatch.svg', './icon/alarm.svg'];
   const link = document.querySelector('link[rel="icon"]');
 
   link.href = icons[index];

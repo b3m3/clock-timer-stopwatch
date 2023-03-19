@@ -283,7 +283,7 @@ section.active {
 
 .navbar ul {
   display: grid;
-  grid-template: auto / repeat(3, 1fr);
+  grid-template: auto / repeat(4, 1fr);
   gap: .625rem;
   border-radius: 2rem;
 }
