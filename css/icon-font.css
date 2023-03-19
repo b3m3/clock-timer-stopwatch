@@ -21,30 +21,48 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-back:before {
+.icon-clock:before {
   content: "\e900";
-  font-weight: bold;
-  font-size: 34px;
+  color: #161a258f;
+  font-size: 2.25rem;
 }
-.icon-time:before {
+.icon-stopwatch:before {
   content: "\e901";
-  font-weight: bold;
-  font-size: 30px;
+  color: #161a258f;
+  font-size: 2.25rem;
 }
-.icon-reset:before {
+.icon-alarm:before {
   content: "\e902";
-  font-weight: bold;
-  font-size: 36px;
+  color: #161a258f;
+  font-size: 2.25rem;
 }
-.icon-play:before {
+.icon-timer:before {
   content: "\e903";
-  transform: translateX(10px);
-  font-weight: bold;
-  margin-right: -7px;
-  font-size: 34px;
+  color: #161a258f;
+  font-size: 2.25rem;
 }
-.icon-paused:before {
+.icon-pause:before {
   content: "\e904";
-  font-weight: bold;
-  font-size: 34px;
+  color: #161a258f;
+  font-size: 2.25rem;
+}
+.icon-switch:before {
+  content: "\e905";
+  color: #161a258f;
+  font-size: 2.25rem;
+}
+.icon-circle:before {
+  content: "\e906";
+  color: #161a258f;
+  font-size: 2.25rem;
+}
+.icon-clear:before {
+  content: "\e907";
+  color: #161a258f;
+  font-size: 2.25rem;
+}
+.icon-back:before {
+  content: "\e908";
+  color: #161a258f;
+  font-size: 2.25rem;
 }
