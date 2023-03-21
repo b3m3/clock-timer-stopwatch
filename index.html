@@ -35,7 +35,7 @@
 
     <!-- Clock -->
 
-    <section class="clock active">
+    <section class="clock">
       <div class="circle-wrapp clock__wrapp">
 
         <div class="circle-body clock__body">
@@ -159,8 +159,33 @@
 
     <!-- alarm -->
 
-    <section class="alarm">
+    <section class="alarm active">
+      <div class="alarm__wrapp">
+        <div class="alarm__item default-alarm" id="00000000000000">
+          <div class="alarm__col">
+            <input class="alarm__time" type="time" value="08:00">
 
+            <ul class="alarm__days">
+              <li class="alarm__day active">Mon</li>
+              <li class="alarm__day active">Tue</li>
+              <li class="alarm__day active">Wed</li>
+              <li class="alarm__day active">Thu</li>
+              <li class="alarm__day active">Fri</li>
+              <li class="alarm__day">Sat</li>
+              <li class="alarm__day">Sun</li>
+            </ul>
+          </div>
+
+          <div class="alarm__col">
+            <div class="alarm__checkbox">
+              <input type="checkbox" id="cl">
+              <label for="cl"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="alarm__btn">+</button>
     </section>
   </div>
 
