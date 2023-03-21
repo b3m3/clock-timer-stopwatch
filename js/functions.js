@@ -193,13 +193,22 @@ export const getAlarmsFromStorage = (wrapp, daysArr) => {
   }
 };
 
-export const changeAlarmData = (event) => {
+export const changeAlarmData = (event, daysArr) => {
   if (event.target && !event.target.classList.contains('alarm__wrapp')) {
     const parent = event.target.closest('.alarm__item');
 
     const time = parent.querySelector('.alarm__time');
     const include = parent.querySelector('.alarm__checkbox input');
     const days = parent.querySelectorAll('.alarm__day');
+
+    if (event.target === include) {
+      const activeDay = document.querySelector('.alarm__day.active') !== null;
+      const currentDay = daysArr[new Date().getDay() - 1];
+
+      if (!activeDay) {
+        days.forEach(d => d.textContent === currentDay && d.classList.add("active"))
+      }
+    } // ------------ if no active day and "include" === active, current day = active
     
     if (event.target && event.target.classList.contains('alarm__day')) {
       if (event.target.classList.contains('active')) {
