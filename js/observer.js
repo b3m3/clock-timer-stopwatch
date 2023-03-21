@@ -27,8 +27,10 @@ export const callback = (mutations) => {
 
   if (getTotalSeconds(+timerFirstHours, +timerFirstMinutes, +timerFirstSeconds)) {
     timerStartBtn.classList.add('active');
+    timerStartBtn.disabled = false;
   } else {
     timerStartBtn.classList.remove('active');
+    timerStartBtn.disabled = true;
   }
 };
 
