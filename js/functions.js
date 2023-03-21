@@ -240,16 +240,12 @@ export const changeAlarmData = (event, daysArr, signal) => {
 export const startAlarm = (daysArr, signal) => {
   const alarms = document.querySelectorAll('.alarm__item');
 
-  const addZero = (time) => {
-    return time < 10 ? '0' + time : time;
-  }
-
   const date = new Date();
   const currentDay = daysArr[date.getDay() -1];
   const currentHours = date.getHours();
   const currentMinutes = date.getMinutes();
   const currentSeconds = date.getSeconds();
-  const currentTime = addZero(currentHours) + ':' + addZero(currentMinutes);
+  const currentTime = addZeroToTime(currentHours) + ':' + addZeroToTime(currentMinutes);
 
   alarms.forEach(el => {
     const days = el.querySelectorAll('.alarm__day');
