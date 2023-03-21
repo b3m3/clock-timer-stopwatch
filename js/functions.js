@@ -25,11 +25,11 @@ export const tabs = (buttons, contents, index, activeClass) => {
   addActiveClass(contents);
 };
 
-export const changeHeadTitle = button => {
+export const changeHeadTitle = (button) => {
   document.title = button.textContent;
 };
 
-export const changeHeadLinkIcon = index => {
+export const changeHeadLinkIcon = (index) => {
   const icons = ['./icon/clock.svg', './icon/timer.svg', './icon/stopwatch.svg', './icon/alarm.svg'];
   const link = document.querySelector('link[rel="icon"]');
 
@@ -58,11 +58,11 @@ export const handleStartTimerCounter = (id, hou, min, sec) => {
   }
 };
 
-export const addZeroToTime = t => {
+export const addZeroToTime = (t) => {
   return t < 10 ? '0' + t : t
 };
 
-export const addDoubleZeroToTime = t => {
+export const addDoubleZeroToTime = (t) => {
   return t < 10 ? '00' + t : t < 100 ? '0' + t : t;
 };
 
@@ -74,12 +74,12 @@ export const getTotalSeconds = (h, m, s) => {
   return (+h.textContent * 60 * 60) + (+m.textContent * 60) + (+s.textContent);
 };
 
-export const playSignal = audio => {
+export const playSignal = (audio) => {
   audio.currentTime = 0;
   audio.play();
 };
 
-export const stopSignal = audio => {
+export const stopSignal = (audio) => {
   audio.currentTime = 0;
   audio.muted = true;
   audio.pause();
@@ -119,9 +119,7 @@ export const createStopwatchSavedTimeItem = (wrapp, min, sec, msec) => {
   wrapp.append(li);
 };
 
-export const addNewAlarm = (id, wrapp, time, include, activeDays) => {
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
+export const addNewAlarm = (id, wrapp, daysArr, time, include, activeDays) => {
   const checkActive = prop => activeDays && activeDays.indexOf(prop) !== -1;
 
   const alarm = `
@@ -130,7 +128,7 @@ export const addNewAlarm = (id, wrapp, time, include, activeDays) => {
         <input class="alarm__time" type="time" value="${time ? time : '08:00'}">
 
         <ul class="alarm__days">
-          ${days.map(day => `<li class="alarm__day${checkActive(day) ? " active" : ""}">${day}</li>`).join('')}
+          ${daysArr.map(day => `<li class="alarm__day${checkActive(day) ? " active" : ""}">${day}</li>`).join('')}
         </ul>
       </div>
 
@@ -141,6 +139,7 @@ export const addNewAlarm = (id, wrapp, time, include, activeDays) => {
         </div>
       </div>
       <button class="alarm__del">+</button>
+      <button class="alarm__stop">STOP</button>
     </div>
   `;
 
@@ -150,14 +149,14 @@ export const addNewAlarm = (id, wrapp, time, include, activeDays) => {
   wrapp.insertAdjacentHTML("beforeend", alarm)
 };
 
-export const removeAlarm = event => {
+export const removeAlarm = (event) => {
   if (event.target && event.target.classList.contains('alarm__del')) {
     localStorage.removeItem(event.target.parentNode.id)
     event.target.parentNode.remove();
   }
-}
+};
 
-export const getAlarmsFromStorage = (wrapp) => {
+export const getAlarmsFromStorage = (wrapp, daysArr) => {
   for (const key in localStorage) {
     if (Object.hasOwnProperty.call(localStorage, key)) {
       const element = localStorage[key];
@@ -166,7 +165,7 @@ export const getAlarmsFromStorage = (wrapp) => {
         const el = JSON.parse(element);
         
         if (key !== '00000000000000') {
-          addNewAlarm(key, wrapp, el.time, el.include, el.days);
+          addNewAlarm(key, wrapp, daysArr, el.time, el.include, el.days);
         } else {
           const defaultAlarm = document.querySelector('.default-alarm');
           const time = defaultAlarm.querySelector('.alarm__time');
@@ -180,7 +179,7 @@ export const getAlarmsFromStorage = (wrapp) => {
 
           days.forEach(day => {
             day.classList.remove('active');
-            
+
             if (checkActive(day.textContent)) {
               day.classList.add('active');
             }
@@ -188,41 +187,101 @@ export const getAlarmsFromStorage = (wrapp) => {
         }
 
       } else {
-        addNewAlarm(key, wrapp);
+        addNewAlarm(key, wrapp, daysArr);
       }
     }
   }
-}
+};
 
 export const changeAlarmData = (event) => {
-  const parent = event.target.closest('.alarm__item');
+  if (event.target && !event.target.classList.contains('alarm__wrapp')) {
+    const parent = event.target.closest('.alarm__item');
 
-  const time = parent.querySelector('.alarm__time');
-  const include = parent.querySelector('.alarm__checkbox input');
-  const days = parent.querySelectorAll('.alarm__day');
+    const time = parent.querySelector('.alarm__time');
+    const include = parent.querySelector('.alarm__checkbox input');
+    const days = parent.querySelectorAll('.alarm__day');
+    
+    if (event.target && event.target.classList.contains('alarm__day')) {
+      if (event.target.classList.contains('active')) {
+        event.target.classList.remove('active');
+      } else {
+        event.target.classList.add('active');
+      }
+    } // Active Day
 
-  // Active Day
-  if (event.target && event.target.classList.contains('alarm__day')) {
-    if (event.target.classList.contains('active')) {
-      event.target.classList.remove('active');
-    } else {
-      event.target.classList.add('active');
-    }
+    const alarmData = {
+      id: parent.id, 
+      time: time.value, 
+      include: include.checked, 
+      days: []
+    };
+
+
+    days.forEach(day => {
+      if (day.classList.contains('active')) {
+        alarmData.days.push(day.textContent)
+      }
+    });
+
+    localStorage.setItem(parent.id, JSON.stringify(alarmData));
+  }
+};
+
+export const startAlarm = (daysArr, signal) => {
+  const alarms = document.querySelectorAll('.alarm__item');
+
+  const addZero = (time) => {
+    return time < 10 ? '0' + time : time;
   }
 
-  const alarmData = {
-    id: parent.id, 
-    time: time.value, 
-    include: include.checked, 
-    days: []
-  };
+  const date = new Date();
+  const currentDay = daysArr[date.getDay() -1];
+  const currentHours = date.getHours();
+  const currentMinutes = date.getMinutes();
+  const currentSeconds = date.getSeconds();
+  const currentTime = addZero(currentHours) + ':' + addZero(currentMinutes);
 
+  alarms.forEach(el => {
+    const days = el.querySelectorAll('.alarm__day');
+    const include = el.querySelector('.alarm__checkbox input');
+    const time = el.querySelector('.alarm__time');
 
-  days.forEach(day => {
-    if (day.classList.contains('active')) {
-      alarmData.days.push(day.textContent)
+    if (include.checked) {
+      for (let i = 0; i < days.length; i++) {
+        const day = days[i].classList.contains('active') && days[i].textContent;
+
+        if (day === currentDay) {
+          if (currentTime === time.value && currentSeconds === 0) {
+            el.classList.add('active');
+            signal.muted = false;
+            playSignal(signal);
+          }
+        }
+      }
+    } else {
+      el.classList.remove('active');
+      signal.muted = true;
+      stopSignal(signal);
+
+      if (currentTime === time.value && currentSeconds > 0) {
+        el.classList.remove('active');
+        signal.muted = true;
+        stopSignal(signal);
+      }
     }
-  });
+  })
+};
 
-  localStorage.setItem(parent.id, JSON.stringify(alarmData));
-}
+export const stopAlarm = (event) => {
+  const parent = event.target.closest('.alarm__item');
+  const include = parent.querySelector('.alarm__checkbox input');
+
+  const storageData = JSON.parse(localStorage.getItem(parent.id));
+
+  if (event.target.classList.contains('alarm__stop')) {
+    parent.classList.remove('active');
+    storageData.include = false;
+    include.checked = false;
+    localStorage.setItem(parent.id, JSON.stringify(storageData));
+  }
+};
