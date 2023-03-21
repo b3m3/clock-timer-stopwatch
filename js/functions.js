@@ -118,3 +118,111 @@ export const createStopwatchSavedTimeItem = (wrapp, min, sec, msec) => {
   `;
   wrapp.append(li);
 };
+
+export const addNewAlarm = (id, wrapp, time, include, activeDays) => {
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  const checkActive = prop => activeDays && activeDays.indexOf(prop) !== -1;
+
+  const alarm = `
+    <div class="alarm__item" id="${id}">
+      <div class="alarm__col">
+        <input class="alarm__time" type="time" value="${time ? time : '08:00'}">
+
+        <ul class="alarm__days">
+          ${days.map(day => `<li class="alarm__day${checkActive(day) ? " active" : ""}">${day}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="alarm__col">
+        <div class="alarm__checkbox">
+          <input type="checkbox" id="cl${id}" ${include && "checked"}>
+          <label for="cl${id}"></label>
+        </div>
+      </div>
+      <button class="alarm__del">+</button>
+    </div>
+  `;
+
+  const data = {id, time, include, days: activeDays ? activeDays : []}
+
+  localStorage.setItem(id, JSON.stringify(data));
+  wrapp.insertAdjacentHTML("beforeend", alarm)
+};
+
+export const removeAlarm = event => {
+  if (event.target && event.target.classList.contains('alarm__del')) {
+    localStorage.removeItem(event.target.parentNode.id)
+    event.target.parentNode.remove();
+  }
+}
+
+export const getAlarmsFromStorage = (wrapp) => {
+  for (const key in localStorage) {
+    if (Object.hasOwnProperty.call(localStorage, key)) {
+      const element = localStorage[key];
+
+      if (element) {
+        const el = JSON.parse(element);
+        
+        if (key !== '00000000000000') {
+          addNewAlarm(key, wrapp, el.time, el.include, el.days);
+        } else {
+          const defaultAlarm = document.querySelector('.default-alarm');
+          const time = defaultAlarm.querySelector('.alarm__time');
+          const include = defaultAlarm.querySelector('#cl');
+          const days = defaultAlarm.querySelectorAll('.alarm__day');
+
+          const checkActive = prop => el.days && el.days.indexOf(prop) !== -1;
+          
+          time.value = el.time;
+          include.checked = el.include;
+
+          days.forEach(day => {
+            day.classList.remove('active');
+            
+            if (checkActive(day.textContent)) {
+              day.classList.add('active');
+            }
+          })
+        }
+
+      } else {
+        addNewAlarm(key, wrapp);
+      }
+    }
+  }
+}
+
+export const changeAlarmData = (event) => {
+  const parent = event.target.closest('.alarm__item');
+
+  const time = parent.querySelector('.alarm__time');
+  const include = parent.querySelector('.alarm__checkbox input');
+  const days = parent.querySelectorAll('.alarm__day');
+
+  // Active Day
+  if (event.target && event.target.classList.contains('alarm__day')) {
+    if (event.target.classList.contains('active')) {
+      event.target.classList.remove('active');
+    } else {
+      event.target.classList.add('active');
+    }
+  }
+
+  const alarmData = {
+    id: parent.id, 
+    time: time.value, 
+    include: include.checked, 
+    days: []
+  };
+
+
+  days.forEach(day => {
+    if (day.classList.contains('active')) {
+      alarmData.days.push(day.textContent)
+    }
+  });
+
+  localStorage.setItem(parent.id, JSON.stringify(alarmData));
+}
