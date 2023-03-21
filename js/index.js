@@ -2,7 +2,7 @@
 import { handleArrowClock, tabs, changeHeadTitle, handleStartTimerCounter, changeHeadLinkIcon,
   addZeroToTime, addDoubleZeroToTime, getTotalSeconds, playSignal, stopSignal, createTimeElements, 
   getTimerEndTime, createStopwatchSavedTimeItem, addNewAlarm, removeAlarm, getAlarmsFromStorage, 
-  changeAlarmData } from './functions.js';
+  changeAlarmData, startAlarm, stopAlarm } from './functions.js';
 
 // Constans
 import { tabButtons, tabContents, timerFirst, timerNext,  swiperWrappers, timerNextCounter,
@@ -204,20 +204,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }); // event circle button
 
   // ALARM
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
   const alarmId = () => {
     return new Date().getTime();
   }
 
   newAlarmBtn.addEventListener('click', () => {
-    addNewAlarm(alarmId(), alarmWrapp);
+    addNewAlarm(alarmId(), alarmWrapp, days);
+    startAlarm(days, signal);
   });
 
   alarmWrapp.addEventListener('click', (e) => {
     changeAlarmData(e);
     removeAlarm(e);
+    startAlarm(days, signal);
+    stopAlarm(e);
   });
 
   alarmWrapp.addEventListener('input', (e) => changeAlarmData(e));
 
-  getAlarmsFromStorage(alarmWrapp);
+  getAlarmsFromStorage(alarmWrapp, days);
+
+  setInterval(() => {
+    startAlarm(days, signal);
+  }, 1000);
 });
