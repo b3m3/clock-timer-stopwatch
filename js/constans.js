@@ -38,7 +38,6 @@ export const stopwatchCircleBtn = document.querySelector('.stopwatch-circle');
 
 export const stopwatchCircleList = document.querySelector('.stopwatch__list');
 
-
-
-
-
+// Alarm
+export const alarmWrapp = document.querySelector('.alarm__wrapp');
+export const newAlarmBtn = document.querySelector('.alarm__btn');
