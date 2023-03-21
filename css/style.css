@@ -24,6 +24,7 @@ button {cursor: pointer;border: none;background: none;}
 :root {
   --gray-900: #161A25;
   --gray-800: #161a258f;
+  --gray-300: #a3a3a3;
   --gray-110: #EFF2F7;
   --gray-100: #F2F4F8;
   --gray-50: #F6F7F9;
@@ -603,4 +604,158 @@ section.active {
   .stopwatch .buttons-body button {
     padding: .5rem .8125rem;
   }
+}
+
+/* Alarm */
+
+.alarm {
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.alarm__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 auto;
+  color: var(--gray-50);
+  background: var(--gradient);
+  transition: .3s;
+}
+
+.alarm__btn:hover {
+  box-shadow: var(--shadow-8);
+}
+
+.alarm__wrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 19.375rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.alarm__item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .9375rem;
+  color: var(--gray-300);
+  background: #F2F4F8;
+  box-shadow: var(--shadow-4);
+  border-radius: 2rem;
+  -webkit-animation: fade-translate 1s ease;
+  animation: fade-translate 1s ease;
+}
+
+.alarm__item:hover .alarm__del {
+  transform: rotate(45deg) scale(1);
+}
+
+.alarm__time {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1.75rem;
+}
+
+.alarm__time::-webkit-calendar-picker-indicator {
+  background: none;
+}
+
+.alarm__time::-webkit-datetime-edit-hour-field:focus {
+  color: var(--blue-400);
+  background-color: var(--gray-100);
+  border-radius: 15%;
+}
+
+.alarm__time::-webkit-datetime-edit-minute-field:focus {
+  color: var(--blue-400);
+  background-color: var(--gray-100);
+  border-radius: 15%;
+}
+
+.alarm__days {
+  display: flex;
+  gap: 7px;
+}
+
+.alarm__days li {
+  position: relative;
+  cursor: pointer;
+  font-size: .6875rem;
+  transition: .3s;
+}
+
+.alarm__days li.active {
+  color: var(--blue-400);
+}
+
+.alarm__days li:not(:last-child)::before {
+  position: absolute;
+  content: ',';
+  bottom: 0;
+  right: -3px;
+}
+
+.alarm__checkbox {
+  overflow: hidden;
+  position: relative;
+  background: var(--gray-110);
+  box-shadow: var(--shadow-i-4);
+  transform: matrix(1, 0, 0, -1, 0, 0);
+  border-radius: 1.8125rem;
+  width: 3.75rem;
+  height: 2.1875rem;
+}
+
+.alarm__checkbox input  {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.alarm__checkbox input:checked + label {
+  left: 25px;
+  background: var(--gradient);
+}
+
+.alarm__checkbox label  {
+  cursor: pointer;
+  position: absolute;
+  content: '';
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: 27px;
+  height: 27px;
+  background: var(--gray-100);
+  box-shadow: 2px 2px 15px rgba(22, 25, 36, 0.25);
+  border-radius: 50%;
+  transition: .3s;
+}
+
+.alarm__del {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--rad-400);
+  border-radius: 50%;
+  color: var(--gray-100);
+  font-size: 18px;
+  transform: rotate(45deg) scale(0);
+  transition: .4s;
 }
