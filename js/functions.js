@@ -193,7 +193,7 @@ export const getAlarmsFromStorage = (wrapp, daysArr) => {
   }
 };
 
-export const changeAlarmData = (event, daysArr) => {
+export const changeAlarmData = (event, daysArr, signal) => {
   if (event.target && !event.target.classList.contains('alarm__wrapp')) {
     const parent = event.target.closest('.alarm__item');
 
@@ -202,8 +202,9 @@ export const changeAlarmData = (event, daysArr) => {
     const days = parent.querySelectorAll('.alarm__day');
 
     if (event.target === include) {
-      const activeDay = document.querySelector('.alarm__day.active') !== null;
+      const activeDay = parent.querySelector('.alarm__day.active') !== null;
       const currentDay = daysArr[new Date().getDay() - 1];
+      signal.muted = false;
 
       if (!activeDay) {
         days.forEach(d => d.textContent === currentDay && d.classList.add("active"))
@@ -269,28 +270,27 @@ export const startAlarm = (daysArr, signal) => {
       }
     } else {
       el.classList.remove('active');
-      signal.muted = true;
-      stopSignal(signal);
 
       if (currentTime === time.value && currentSeconds > 0) {
         el.classList.remove('active');
-        signal.muted = true;
-        stopSignal(signal);
       }
     }
   })
 };
 
-export const stopAlarm = (event) => {
-  const parent = event.target.closest('.alarm__item');
-  const include = parent.querySelector('.alarm__checkbox input');
-
-  const storageData = JSON.parse(localStorage.getItem(parent.id));
-
-  if (event.target.classList.contains('alarm__stop')) {
-    parent.classList.remove('active');
-    storageData.include = false;
-    include.checked = false;
-    localStorage.setItem(parent.id, JSON.stringify(storageData));
+export const stopAlarm = (event, signal) => {
+  if (event.target && !event.target.classList.contains('alarm__wrapp')) {
+    const parent = event.target.closest('.alarm__item');
+    const include = parent.querySelector('.alarm__checkbox input');
+  
+    const storageData = JSON.parse(localStorage.getItem(parent.id));
+  
+    if (event.target.classList.contains('alarm__stop')) {
+      parent.classList.remove('active');
+      storageData.include = false;
+      include.checked = false;
+      localStorage.setItem(parent.id, JSON.stringify(storageData));
+      stopSignal(signal);
+    }
   }
 };

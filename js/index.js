@@ -216,13 +216,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }); // add new Alarm
 
   alarmWrapp.addEventListener('click', (e) => {
-    changeAlarmData(e, days);
+    changeAlarmData(e, days, signal);
     removeAlarm(e);
     startAlarm(days, signal);
-    stopAlarm(e);
+    stopAlarm(e, signal);
   }); // event in item Alarm
 
-  alarmWrapp.addEventListener('input', (e) => changeAlarmData(e, days));
+  alarmWrapp.addEventListener('input', (e) => changeAlarmData(e, days, signal));
 
   getAlarmsFromStorage(alarmWrapp, days);
 
