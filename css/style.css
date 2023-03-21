@@ -149,7 +149,7 @@ body {
   padding: 1.25rem .625rem;
   display: flex;
   flex-direction: column;
-  grid-row-gap: calc(30px + calc(80 - 30) * ((100vw - 320px) / (2560 - 320)));
+  grid-row-gap: calc(30px + calc(60 - 30) * ((100vw - 320px) / (2560 - 320)));
 }
 
 section {
@@ -512,7 +512,7 @@ section.active {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1.875rem;
+  gap: 1.25rem;
 }
 
 .stopwatch .circle-wrapp::after {
@@ -559,7 +559,7 @@ section.active {
   transform: translateY(calc(30px + calc(70 - 30) * ((100vw - 320px) / (2560 - 320))));
   display: flex;
   gap: calc(10px + calc(25 - 10) * ((100vw - 320px) / (2560 - 320)));
-  font-size: calc(16px + calc(56 - 16) * ((100vw - 320px) / (2560 - 320)));
+  font-size: calc(24px + calc(46 - 24) * ((100vw - 320px) / (2560 - 320)));
   opacity: .15;
 }
 
