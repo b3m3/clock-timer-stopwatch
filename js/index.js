@@ -1,14 +1,15 @@
 // Functions
 import { handleArrowClock, tabs, changeHeadTitle, handleStartTimerCounter, changeHeadLinkIcon,
-  addZeroToTime, addDoubleZeroToTime, getTotalSeconds, playSignal, stopSignal,
-  createTimeElements, getTimerEndTime, createStopwatchSavedTimeItem } from './functions.js';
+  addZeroToTime, addDoubleZeroToTime, getTotalSeconds, playSignal, stopSignal, createTimeElements, 
+  getTimerEndTime, createStopwatchSavedTimeItem, addNewAlarm, removeAlarm, getAlarmsFromStorage, 
+  changeAlarmData } from './functions.js';
 
 // Constans
 import { tabButtons, tabContents, timerFirst, timerNext,  swiperWrappers, timerNextCounter,
   timerCancelBtn, timerStartBtn, timerPauseBtn, timerHours, timerMinutes, timerSeconds,
   timerEndTime, circleProgress, bell, signal, stopwatchArrrow, stopwatchCounterMinutes, 
   stopwatchCounterSeconds, stopwatchCounterMilliseconds, stopwatchStartBtn, stopwatchStopBtn,
-  stopwatchResetBtn, stopwatchCircleBtn, stopwatchCircleList } from './constans.js';
+  stopwatchResetBtn, stopwatchCircleBtn, stopwatchCircleList, alarmWrapp, newAlarmBtn } from './constans.js';
 
 import { callback, options } from './observer.js';
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // CLOCK
+
   setInterval(() => {
     handleArrowClock('.clock-arrow-hours', 'getHours', 12);
     handleArrowClock('.clock-arrow-minutes', 'getMinutes', 60);
@@ -33,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 1000);
 
   // TIMER
+
   let timerInterval;
   let pause = false;
   let percentPerSecond = 0;
@@ -199,4 +202,22 @@ document.addEventListener('DOMContentLoaded', () => {
       stopwatchCounterMilliseconds
     );
   }); // event circle button
+
+  // ALARM
+  const alarmId = () => {
+    return new Date().getTime();
+  }
+
+  newAlarmBtn.addEventListener('click', () => {
+    addNewAlarm(alarmId(), alarmWrapp);
+  });
+
+  alarmWrapp.addEventListener('click', (e) => {
+    changeAlarmData(e);
+    removeAlarm(e);
+  });
+
+  alarmWrapp.addEventListener('input', (e) => changeAlarmData(e));
+
+  getAlarmsFromStorage(alarmWrapp);
 });
