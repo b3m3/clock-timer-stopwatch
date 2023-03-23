@@ -25,8 +25,10 @@ export const tabs = (buttons, contents, index, activeClass) => {
   addActiveClass(contents);
 };
 
-export const changeHeadTitle = (button) => {
-  document.title = button.textContent;
+export const changeHeadTitle = (index) => {
+  const names = ['Clock', 'Timer', 'Stopwatch', 'Alarm'];
+
+  document.title = names[index];
 };
 
 export const changeHeadLinkIcon = (index) => {

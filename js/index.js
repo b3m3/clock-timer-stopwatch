@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   tabButtons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
       tabs(tabButtons, tabContents, i, 'active');
-      changeHeadTitle(btn);
+      changeHeadTitle(i);
       changeHeadLinkIcon(i);
     });
   });
